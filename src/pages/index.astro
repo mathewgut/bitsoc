@@ -1,16 +1,101 @@
 ---
+// if you need help with absolutely anything, don't hesitate to reach out to me: mathewgutoskie@gmail.com :)
+// some resources that might help:
+// 		astro docs: https://docs.astro.build/en/
+// 		tailwind docs: https://tailwindcss.com/docs
+//		react docs (for components component): https://react.dev/learn
+// 		typescript docs: https://www.typescriptlang.org/docs/
+
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import IndexEvents from "../components/IndexEvents.tsx";
+import CardCarousel from "@/components/CardCarousel";
+import Footer from "@/components/Footer.astro";
 
 ---
+<BaseLayout title="Home">
+	<article class="relative z-30 flex flex-col justify-center w-full h-100 lg:h-150 overflow-clip">
+		<div class="flex flex-col text-white w-full items-center sm:items-center  sm:w-fit sm:px-0 sm:left-10 lg:left-20 h-full absolute z-30">
+			<img class="h-4/5" src="/logo.ico" alt="bit society logo" />
+			<a href="/about" class="flex w-full justify-center">
+				<button class=" w-2/3 py-2 px-4 my-8 hover:cursor-pointer  text-white border-2 border-white rounded-lg hover:bg-white hover:text-bitsoc-orange transition-colors duration-300">
+					Learn more
+				</button>
+			</a>
+		</div>
+		
+		<div class="relative flex">
+			<img class="relative z-10 w-full h-fit min-w-200" src="/index-hero-3.jpg" alt="a wholesome group photo from the boba bitsoc event">
+				<div class="absolute bottom-0 w-full sm:w-2/3 h-full z-20 bg-linear-to-b sm:bg-linear-to-r from-black to-transparent" />
+				<div class="absolute bottom-0 w-full h-2/3 z-20 bg-linear-to-t from-black to-transparent" />
+			</img>
+		</div>
+	</article>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+	<section class="flex flex-col justify-center lg:items-center w-full border-t-6 border-bitsoc-blue gap-6 px-12 lg:px-30 py-40 text-black">
+		<h2 class="text-3xl font-semibold text-left">For BIT students, from BIT students</h2>
+		<p class="max-w-175 lg:max-w-250 sm:text-lg lg:text-xl">
+			BITsoc, short for Bachelor of Information Technology Society, is a student-run club that seeks to help BIT students with their academic careers and social experience at Carleton. We host a range of events, from workshops to game nights and provide a lounge space for our members to play video games, socialize, or study.
+		</p>
+		<button class="w-fit py-2 px-8 my-8 hover:cursor-pointer text-bitsoc-orange border-2 border-bitsoc-orange rounded-lg hover:bg-bitsoc-orange hover:text-white transition-colors duration-300">
+				Become a member
+		</button>
+	</section>
+
+	
+	<section class="flex justify-center md:justify-baseline\ w-full py-5 lg:py-10">
+		<h2 class="text-black text-3xl font-semibold">Upcoming Events</h2>
+	</section>
+	<!-- make sure you add client:load, client:visible etc, or else js wont load/be interactive -->
+	<IndexEvents client:only />
+	<section class="flex justify-center md:justify-baseline bg-white w-full px-4 lg:px-20 z-30 pt-4">
+		<button class="w-fit py-2 px-8 my-2 hover:cursor-pointer text-bitsoc-orange border-2 border-bitsoc-orange rounded-lg hover:bg-bitsoc-orange hover:text-white transition-colors duration-300">
+				See all events
+		</button>
+	</section>
+
+	<section class="flex flex-col text-black  justify-center items-center gap-4 px-12 lg:px-30 pt-60 pb-40">
+		<div class="flex flex-col sm:flex-row justify-center items-center w-full gap-6 ">
+		
+		<img class="h-40 lg:h-60 md:mr-10 border-2 p-4 rounded-full border-black bg-black" src="/discord.svg" alt="discord logo" />
+		
+		<div class="flex flex-col gap-4 max-w-175 lg:max-w-250">
+			<h2 class="text-3xl font-semibold text-left ">Connect with us!</h2>
+			<p class="max-w-175 lg:max-w-250 sm:text-lg lg:text-xl">
+				Join over 600 users in our Discord to stay up to date with the latest news, events, and opportunities. Connect with fellow BIT students, ask questions, and get involved in the community.
+			</p>
+			<a href="https://discord.gg/vPTMaaM4fK" target="_blank" class="flex w-full lg:mt-4">
+				<button class="w-fit py-2 px-8 my-2 hover:cursor-pointer text-bitsoc-orange border-2 border-bitsoc-orange rounded-lg hover:bg-bitsoc-orange hover:text-white transition-colors duration-300">
+						Join our Discord
+				</button>
+			</a>
+		</div>
+		
+		</div>
+		
+	</section>
+	
+	<section class="flex flex-col gap-20 via-transparent w-full pt-40 ">
+		<header class="flex flex-col gap-4 justify-center items-center w-full px-10">
+			<h2 class="text-black text-3xl font-semibold">One of us. One of us.</h2>
+			<p class="max-w-125 lg:max-w-250 text-base sm:text-lg">
+				BIT Programs are a collaberation between Carleton University and Algonquin College. You learn the theory of and gain hands on expierence in specialized fields. 
+			</p>
+		</header>
+
+		<div class="flex justify-center items-center px-12 lg:px-30 w-full mb-40">
+			<CardCarousel client:visible cardType="svg" 
+			data={
+				[{title:"Interactive Multimedia Design",description:"A focus on multimedia best practices and the creation of multimedia such as games, websites, films, XR, and animation. ", image:"/rectangle-goggles.svg"}, 
+				{title:"Networking Technology",description:"Theory and practical application of the design, planning, and administration of networks.", image:"/network.svg"}, 
+				{title:"Optical Sensors & Systems",description:"Explores everything to do with light and light based technologies including computer vision, laser technology, and autonomous vehicles.", image:"/lightbulb.svg"},
+				{title:"Information Resource Management",description:"Creates and studies the management of data, datastores, and their surrounding infastructure.", image:"/database.svg"}
+				]
+			} />
+		</div>
+
+	</section>
+
+	<Footer />
+
+</BaseLayout>

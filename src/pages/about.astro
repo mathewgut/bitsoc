@@ -1,0 +1,46 @@
+---
+import ButtonOrange from "@/components/ButtonOrange.astro";
+import Footer from "@/components/Footer.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About us">
+    <main class="flex flex-col gap-10 justify-center px-12 lg:px-20 py-20">
+        <h1 class="text-4xl md:text-5xl font-semibold text-left">About Us</h1>
+        <section class="w-full pb-4 flex flex-col">
+            <h1 class="text-3xl font-semibold text-left sm:text-left">Who we are</h1>
+            <p class="max-w-175 lg:max-w-250 pt-4">Our goal is to provide BIT students with a supportive community and a range of opportunities to enhance their academic and social experiences at Carleton. We also provide a lounge space for our members to play video games, socialize, or study.</p>
+            <a href="/membership"  class="mt-4">
+                <ButtonOrange text="Learn about membership"/>
+            </a>
+        
+        </section>
+
+        <section class="w-full py-4 flex flex-col gap-2">
+            <h2 class="text-3xl font-semibold text-left ">Our constitution</h2>
+            <p class="max-w-175 lg:max-w-250 pt-2">
+                The BIT Society constitution outlines the structure, objectives, and operational guidelines of the organization. It serves as a foundational document that governs the activities and administration of the society, ensuring that it operates in a manner consistent with its mission to support BIT students. 
+                Essentially, it provides an insight into how and why the club works the way it does.
+            </p>
+            <a href="https://docs.google.com/document/d/1Qe7lZjrh8y21Qbar5SdeRT76EHOnSNh77Epsg0YPpso/edit?tab=t.0" target="_blank" class="mt-4">
+                <ButtonOrange text="View Constitution"/>
+            </a>
+        </section>
+
+        <section class="w-full py-4 flex flex-col gap-2">
+            <h2 class="text-3xl font-semibold text-left ">The executive team</h2>
+            <p class="max-w-175 lg:max-w-250 pt-2">
+                The executive team of BITSoc is composed of dedicated students who volunteer their time and effort to manage the club's operations, plan events, and represent the interests of BIT students. This team is responsible for ensuring that the society fulfills its mission and provides valuable resources and opportunities to its members.
+            </p>
+            <p class="max-w-175 lg:max-w-250 pt-2">
+                You can find a list of the current executive team members, along with their roles and contact information, on our Contact page.
+            </p>
+
+            <a href="/contact" target="_blank" class="mt-4">
+                <ButtonOrange text="Contact"/>
+            </a>
+            
+        </section>
+    </main>
+    <Footer />
+</BaseLayout>

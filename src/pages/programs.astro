@@ -1,0 +1,216 @@
+---
+import ButtonOrange from "@/components/ButtonOrange.astro";
+import Footer from "@/components/Footer.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<BaseLayout title="BIT Programs">
+    <article class="relative z-30 flex flex-col justify-center w-full h-100 lg:h-125 overflow-clip">
+		<div class="flex flex-col text-white w-full h-full items-center sm:items-center sm:w-fit sm:px-0 sm:left-10 lg:left-30 absolute z-30">
+			<h1 class="flex h-full text-5xl md:text-7xl font-semibold text-left items-center">BIT Programs</h1>
+		</div>
+		
+		<div class="relative flex">
+            { /* the built in astro image component is optimized and maintains size before the image is loaded */}
+			<Image width={"700"} height={"400"} class="relative z-10 w-full h-fit min-w-200" src="/carleton-ap.jpg" alt="Azrieli Pavillion building at Carleton University"/>
+				<div class="absolute bottom-0 w-full sm:w-2/3 h-full z-20 bg-linear-to-b sm:bg-linear-to-r from-black to-transparent" />
+                <div class="absolute bottom-0 w-full sm:-w-2/3 h-full z-20 bg-linear-to-b sm:bg-linear-to-l from-black/50 to-transparent" />
+				<div class="absolute bottom-0 w-full h-2/3 z-20 bg-linear-to-t from-black to-transparent" />
+		</div>
+	</article>
+    <main class="flex flex-col items-center w-full gap-10 justify-center px-12 lg:px-20 pb-20 pt-10 scroll-smooth">
+        
+        <section class="flex pb-4 flex-col">
+            <h2 class="text-3xl font-semibold text-left sm:text-left">What are BIT Programs</h2>
+            <p class="max-w-250 md:text-lg lg:max-w-300 pt-4">
+                The Bachelor of Information Technology degree provides comprehensive programs in specialized fields 
+                in collaboration with Algonquin College. Students in this degree gain unique practical hands on experience combined with real work opportunities. Co-op options are available with all programs.
+            </p>
+
+            <p class="max-w-250 md:text-lg lg:max-w-300 pt-2 mb-4">
+                At the end of the program, students will complete a capstone project that integrates the knowledge and skills acquired throughout their studies, demonstrating their ability to solve real-world problems in their chosen field.
+            </p>
+            
+            <div class="flex gap-2 flex-wrap">
+                <a href="https://bitdegree.ca/" target="_blank" rel="noopener noreferrer">
+                    <ButtonOrange text="Learn more about BIT" />
+                </a>
+                <a href="https://capstone.bitdegree.ca/" target="_blank" rel="noopener noreferrer">
+                    <ButtonOrange text="View previous capstones" />
+                </a>
+            </div>
+        </section>
+
+        <section class="flex justify-center gap-6 mb-4 w-fit py-2 px-2 shadow-md border-2 border-neutral-300 rounded-lg flex-wrap">
+            <a href="#IMD">
+                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
+                    <h3>Interactive Multimedia and Design (IMD)</h3>
+                </article>
+            </a>
+            <a href="#NET">
+                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
+                    <h3>Network Technology (NET)</h3>
+                </article>
+            </a>
+            <a href="#IRM">
+                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
+                <h3>Information Resource Management (IRM)</h3>
+                </article>
+            </a>
+            <a href="#OSS">
+                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
+                    <h3>Optical Sensors and Systems (OSS)</h3>
+                </article>
+            </a>
+        </section>
+
+        <section id="IMD" class="flex pb-4 w-full flex-col max-w-250 lg:max-w-300">
+            <h2 class="text-3xl font-semibold text-left">
+                Interactive Multimedia and Design (IMD)
+            </h2>
+            <p class="py-4 md:text-lg">
+                The Interactive Multimedia and Design (IMD) program spans numerous fields such as web development, 3D animation, AR/VR, and game development. Students in this program learn to create engaging digital experiences by combining technical skills with creative design principles. 
+            </p>
+
+            <section class="flex gap-4 w-full flex-col pt-4">
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Careers
+                    </h3>
+                    <p class="md:text-lg">
+                        Graduates of the IMD program can pursue careers as web and game developers, UX/UI designers, multimedia artists, and AR/VR specialists, among others.
+                    </p>
+                </article>
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Is it for you?
+                    </h3>
+                    <p class="md:text-lg">
+                        If you have a passion for creativity and technology, enjoy working on visual and interactive projects, and are interested in fields like web design, game development, or digital media, the IMD program could be a great fit for you.
+                    </p>
+                </article>
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Portfolio
+                    </h3>
+                    <p class="md:text-lg">
+                       The IMD program requires a portfolio submission as a part of the application process. The most important aspect of your portfolio is showcasing your creativity. Pieces can include digital art, graphic design, web design, animations, videos, game designs, or any other multimedia projects you have worked on.
+                    </p>
+                </article>
+                <div class="flex gap-2 flex-wrap">
+                    <a href="https://bitdegree.ca/index.php?Program=IMD&Section=Details" rel="noreferrer noopener" target="_blank">
+                        <ButtonOrange text="Learn more about IMD" />
+                    </a>
+                    <a href="https://bitdegree.ca/index.php?Program=IMD&Section=Admissions&Page=Portfolio" rel="noreferrer noopener" target="_blank">
+                        <ButtonOrange text="Porfolio requirements" />
+                    </a>
+                </div>
+            </section>
+        </section>
+        <section id="NET" class="flex w-full flex-col max-w-250 lg:max-w-300">
+            <h2 class="text-3xl font-semibold text-left">
+                Network Technology (NET)
+            </h2>
+            <p class="py-4 md:text-lg">
+                The Network Technology (NET) program focuses on the design, implementation, and management of computer networks. Courses in this program are structured around industry certifications such as Cisco CCNA, CCNP, and CCIE.
+            </p>
+
+            <section class="flex gap-4 w-full flex-col pt-4">
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Careers
+                    </h3>
+                    <p class="md:text-lg">
+                        Graduates of the NET program can pursue careers as network administrators, network engineers, systems analysts, and cybersecurity specialists.
+                    </p>
+                </article>
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Is it for you?
+                    </h3>
+                    <p class="md:text-lg">
+                        If you have a strong interest in computer networks, enjoy problem-solving and technical challenges, and are keen on pursuing certifications in networking, the NET program could be an excellent choice for you.
+                    </p>
+                </article>
+                <a href="https://bitdegree.ca/index.php?Program=NET" rel="noreferrer noopener" target="_blank">
+                    <ButtonOrange text="Learn more about NET" />
+                </a>
+            </section>
+
+            
+            
+        </section>
+
+        <section id="IRM" class="flex w-full flex-col max-w-250 lg:max-w-300">
+            <h2 class="text-3xl font-semibold text-left">
+                Information Resource Management (IRM)
+            </h2>
+            <p class="py-4 md:text-lg">
+                The Information Resource Management (IRM) program focuses on the use and management of data within information systems. Students in this program learn about database management, data analytics, information governance, and IT project management.
+            </p>
+
+            <section class="flex gap-4 w-full flex-col pt-4">
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Careers
+                    </h3>
+                    <p class="md:text-lg">
+                        Graduates of the IRM program can pursue careers as data analysts, database administrators, IT project managers, and information systems managers.
+                    </p>
+                </article>
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Is it for you?
+                    </h3>
+                    <p class="md:text-lg">
+                        If you have an interest in data management, enjoy working with information systems, and want to understand how to leverage data for business decision-making, the IRM program could be a great fit for you.
+                    </p>
+                </article>
+                <a href="https://bitdegree.ca/index.php?Program=IRM" rel="noreferrer noopener" target="_blank">
+                    <ButtonOrange text="Learn more about IRM" />
+                </a>
+            </section>
+
+            
+            
+        </section>
+
+        <section id="OSS" class="flex w-full flex-col max-w-250 lg:max-w-300">
+            <h2 class="text-3xl font-semibold text-left">
+                Optical Sensors and Systems (OSS)
+            </h2>
+            <p class="py-4 md:text-lg">
+                The Optical Sensors and Systems (OSS) program delves into the study of light-based technologies, including optical sensors, laser systems, and computer vision. Students in this program gain knowledge in areas such as photonics, imaging systems, and autonomous vehicle technologies.
+            </p>
+
+            <section class="flex gap-4 w-full flex-col pt-4">
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Careers
+                    </h3>
+                    <p class="md:text-lg">
+                        Graduates of the OSS program can pursue careers as optical engineers, systems designers, research scientists, and professionals in industries such as telecommunications, healthcare, and autonomous systems.
+                    </p>
+                </article>
+                <article class="flex w-full flex-col gap-2">
+                    <h3 class="text-2xl font-semibold text-left">
+                        Is it for you?
+                    </h3>
+                    <p class="md:text-lg">
+                        If you have a fascination with light and optics, enjoy hands-on technical work, and are interested in cutting-edge technologies like autonomous vehicles and computer vision, the OSS program could be an ideal choice for you.
+                    </p>
+                </article>
+                <a href="https://bitdegree.ca/index.php?Program=OSS" rel="noreferrer noopener" target="_blank">
+                    <ButtonOrange text="Learn more about OSS" />
+                </a>
+            </section>
+
+            
+            
+        </section>
+        
+
+    </main>
+        <Footer />
+</BaseLayout>

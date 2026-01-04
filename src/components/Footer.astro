@@ -1,0 +1,31 @@
+---
+import FAQ from '../components/FAQ';
+---
+
+
+
+<footer class="flex flex-col w-full h-fit pt-4 pb-4 bg-black md:px-20 px-4">
+	<FAQ client:visible />
+		<div class="flex justify-center items-center pb-2">
+			<a href="/"><img class ="h-30" src="/bitsoc-white.png" alt="bit society logo" /></a>
+		</div>
+
+		<div class="flex w-full flex-wrap items-center justify-center gap-4 text-white">
+			<a href="https://www.youtube.com/@bitsoc" target="_blank"><img class="h-8 hover:cursor-pointer" alt="youtube logo" src="/youtube.webp" /></a>
+			<a href="https://www.instagram.com/carletonbitsociety/" target="_blank"><img class="h-6.5 hover:cursor-pointer" alt="instagram logo" src="/instagram.webp" /></a>
+			<a href="https://discord.gg/vPTMaaM4fK" target="_blank"><img class="h-7 hover:cursor-pointer" alt="discord logo" src="/discord.svg" /></a>
+		</div>
+
+		<div class="flex w-full flex-wrap justify-center gap-4 text-white mb-6">
+			<a href="/about" class="hover:underline">About</a>
+			<a href="/events" class="hover:underline">Events</a>
+			<a href="/contact" class="hover:underline">Contact</a>
+			<a href="/memberships" class="hover:underline">Membership</a>
+		</div>
+
+		<div class="flex text-xs text-center w-full justify-center items-end text-white">
+			<hr />
+			<p>{`Copyright © ${new Date().getFullYear()} Bachelor of Information Technology Society, Carleton University & Algonquin College, Ottawa, ON, Canada`}</p>
+		</div>
+		
+</footer>
