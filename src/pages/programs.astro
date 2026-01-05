@@ -1,7 +1,9 @@
 ---
 import ButtonOrange from "@/components/ButtonOrange.astro";
 import Footer from "@/components/Footer.astro";
+import ProgramNav from "../components/ProgramNav.tsx";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { setTextLength } from "@/tools";
 import Image from "astro/components/Image.astro";
 ---
 
@@ -25,45 +27,28 @@ import Image from "astro/components/Image.astro";
             <h2 class="text-3xl font-semibold text-left sm:text-left">What are BIT Programs</h2>
             <p class="max-w-250 md:text-lg lg:max-w-300 pt-4">
                 The Bachelor of Information Technology degree provides comprehensive programs in specialized fields 
-                in collaboration with Algonquin College. Students in this degree gain unique practical hands on experience combined with real work opportunities. Co-op options are available with all programs.
+                in collaboration with Algonquin College. Enrolled students gain theoretical and practical hands on experience combined with real work opportunities. Co-op options are available with all programs.
             </p>
 
-            <p class="max-w-250 md:text-lg lg:max-w-300 pt-2 mb-4">
+            <p class="max-w-250 md:text-lg lg:max-w-300 pt-4 mb-4">
                 At the end of the program, students will complete a capstone project that integrates the knowledge and skills acquired throughout their studies, demonstrating their ability to solve real-world problems in their chosen field.
             </p>
             
-            <div class="flex gap-2 flex-wrap">
+            <div class="flex gap-4 flex-wrap">
                 <a href="https://bitdegree.ca/" target="_blank" rel="noopener noreferrer">
                     <ButtonOrange text="Learn more about BIT" />
+                </a>
+                <a href="https://bitdegree.ca/index.php?Program=BIT&Section=Handbook&Page=Coop" target="_blank" rel="noopener noreferrer">
+                    <ButtonOrange text="Learn more about Co-op" />
                 </a>
                 <a href="https://capstone.bitdegree.ca/" target="_blank" rel="noopener noreferrer">
                     <ButtonOrange text="View previous capstones" />
                 </a>
+                
             </div>
         </section>
 
-        <section class="flex justify-center gap-6 mb-4 w-fit py-2 px-2 shadow-md border-2 border-neutral-300 rounded-lg flex-wrap">
-            <a href="#IMD">
-                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
-                    <h3>Interactive Multimedia and Design (IMD)</h3>
-                </article>
-            </a>
-            <a href="#NET">
-                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
-                    <h3>Network Technology (NET)</h3>
-                </article>
-            </a>
-            <a href="#IRM">
-                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
-                <h3>Information Resource Management (IRM)</h3>
-                </article>
-            </a>
-            <a href="#OSS">
-                <article class="text-center max-w-full md:text-lg px-8 py-6 lg:max-w-125 flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-md">
-                    <h3>Optical Sensors and Systems (OSS)</h3>
-                </article>
-            </a>
-        </section>
+        <ProgramNav client:only />
 
         <section id="IMD" class="flex pb-4 w-full flex-col max-w-250 lg:max-w-300">
             <h2 class="text-3xl font-semibold text-left">
@@ -79,7 +64,7 @@ import Image from "astro/components/Image.astro";
                         Careers
                     </h3>
                     <p class="md:text-lg">
-                        Graduates of the IMD program can pursue careers as web and game developers, UX/UI designers, multimedia artists, and AR/VR specialists, among others.
+                        Graduates of the IMD program can pursue careers as web, game, and software developers along with UX/UI designers, animators, multimedia artists, and AR/VR specialists.
                     </p>
                 </article>
                 <article class="flex w-full flex-col gap-2">

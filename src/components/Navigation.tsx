@@ -36,7 +36,6 @@ function DesktopNav(){
 
     function hasScrolled() {
         if (window.scrollY >= scrollThreshold) {
-            console.log(window.scrollY)
             setScrolledStyles("ease-in-out duration-200 flex z-50 gap-2 h-15 backdrop-blur-xs text-sm fixed top-0 w-full justify-between items-center border-b border-black px-4 bg-white/30 bg-linear-to-l from-white via-white/70 to-transparent");
         }
         else if (window.scrollY < scrollThreshold ) {
