@@ -1,0 +1,16 @@
+---
+import GalleryItems from "@/components/GalleryItems";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Gallery">
+   <main class="flex flex-col items-center w-full gap-10 justify-center px-12 lg:px-20 pb-20 pt-10 scroll-smooth">
+        <header class="flex flex-col gap-4">
+            <h1 class="text-4xl font-bold text-center">Gallery Page</h1>
+            <p class="text-center max-w-2xl">
+                Welcome to the gallery! Here you will find a collection of images and media showcasing our events and activities.
+            </p>
+        </header>
+        <GalleryItems client:load />
+   </main>
+</BaseLayout>

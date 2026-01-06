@@ -56,7 +56,7 @@ function DesktopNav(){
                 <a href="/about"><button className={buttonClasses}>About</button></a>
                 <a href="/about"><button className={buttonClasses}>Membership</button></a>
                 <a href="/programs"><button className={buttonClasses}>BIT Programs</button></a>
-                <a href="/about"><button className={buttonClasses}>Gallery</button></a>
+                <a href="/gallery"><button className={buttonClasses}>Gallery</button></a>
 
             </div>
         </nav>
@@ -101,7 +101,7 @@ function Sidebar ({isOpen}: {isOpen: boolean}) {
                         <li><a href="/about"><button className={buttonClasses}>About</button></a></li>
                         <li><a href="/about"><button className={buttonClasses}>Membership</button></a></li>
                         <li><a href="/programs"><button className={buttonClasses}>BIT Programs</button></a></li>
-                        <li><a href="/about"><button className={buttonClasses}>Gallery</button></a></li>
+                        <li><a href="/gallery"><button className={buttonClasses}>Gallery</button></a></li>
                     </ul>
                 </div>
 
