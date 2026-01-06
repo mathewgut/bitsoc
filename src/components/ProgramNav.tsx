@@ -14,7 +14,7 @@ export default function ProgramNav() {
     useEffect(() =>{
 
         const handlePosChange = () => {
-            if (window.scrollY >= 1100) {
+            if (window.scrollY >= 1050) {
                 console.log("scrolled past threshold");
                 setHasPassedThreshold(true);
             } else {
@@ -52,7 +52,7 @@ export default function ProgramNav() {
 
     if(!isSmall){
         return(
-            <div className={`flex justify-center items-center sticky sm:p-2 top-18 z-30 w-fit backdrop-blur-md bg-white/60 shadow-md border-2 border-neutral-300`}>
+            <div className={`flex justify-center items-center sticky sm:p-2 top-18 z-30 w-fit backdrop-blur-md bg-white/60 shadow-md border-2 border-neutral-300 rounded-md`}>
                 <a onClick={() => ScrollToElement(document.getElementById("IMD") ?? null, isSmall)} aria-label="IMD Navigation button">
                     <article data-program className={
                         `${programNavStyles} ease-in-out duration-300 `}>
