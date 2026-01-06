@@ -7,7 +7,7 @@ interface GalleryResponse {
         thumbnail: string;
         file: string;
         filename: string;
-        mime: string;
+        mime: string; //type
         size: number; //bytes
     }>
 }
