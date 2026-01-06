@@ -22,9 +22,10 @@ const fixGalleryUrl = (href:string) => {
 export default function GalleryItems({galleryData, error}:{galleryData:GalleryResponse|null, error:boolean}) {
     const data = galleryData
     const [isLoading, setisLoading] = useState<boolean>(false);
-    const [isError, setIsError] = useState<boolean>(false);
     
-    if(isError){
+    console.log(galleryData);
+
+    if(error){
         return (
             <div className="flex flex-col gap-2 w-fit h-fit justify-center items-center py-4 px-8 shadow-md rounded-md border-2 border-bitsoc-blue/50">
                 <h2 className="sm:text-lg font-semibold">Oops! Something went wrong loading the gallery.</h2>
