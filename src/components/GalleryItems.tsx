@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
+import { TailSpin } from 'react-loader-spinner'
+
+interface GalleryImage {
+    thumbnail: string;
+    file: string;
+    filename: string;
+    mime: string; //type
+    size: number; //bytes
+}
 
 interface GalleryResponse {
     status?: string|"0";
     message: string;
-    data?: Array<{
-        thumbnail: string;
-        file: string;
-        filename: string;
-        mime: string; //type
-        size: number; //bytes
-    }>
+    data?:GalleryImage[]
 }
 
 // by default the URL is https:bitsoc.ca/home/wwwbitsoc/public_html/manage which is obviously super wrong lol
@@ -19,10 +22,12 @@ const fixGalleryUrl = (href:string) => {
 }
 
 
+
 export default function GalleryItems() {
     const [data, setData] = useState<GalleryResponse|null>(null);
     const [isLoading, setisLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
+    const [selectedImage, setSelectedImage] = useState<GalleryImage|null>(null)
     
     useEffect(()=>{
         async function fetchGallery() {
@@ -44,6 +49,10 @@ export default function GalleryItems() {
         
         fetchGallery();
     },[])
+
+    useEffect(()=>{
+        selectedImage == null ? document.body.classList.remove("overflow-y-hidden") : null
+    },[selectedImage])
 
     if(isError){
         return (
@@ -75,15 +84,34 @@ export default function GalleryItems() {
 
     else if(data?.data && data.data.length >= 1) {
          return(
-            <div className="flex flex-wrap gap-4 w-full h-fit justify-center items-center">
+            <div className="flex flex-wrap gap-4 w-full h-fit justify-center items-center -mx-10">
                 { data.data?.map((item, index) =>
-                    <button key={index} className="hover:scale-110 ease-in-out duration-200 hover:shadow-md"> 
-                        <img className="h-fit w-40 rounded-md" src={fixGalleryUrl(item.thumbnail)} />
+                    <button onClick={() => setSelectedImage(item)} key={index} className="hover:scale-110 ease-in-out duration-200 hover:shadow-md "> 
+                        <img className="h-fit w-30 sm:w-40 rounded-md" src={fixGalleryUrl(item.thumbnail)} />
                     </button> 
                 )}
+                { selectedImage &&
+                    <>
+                    {document.body.classList.add("overflow-y-hidden")}
+                    <ImageLightBox src={fixGalleryUrl(selectedImage.file)} alt={selectedImage.filename}  setState={setSelectedImage}/>
+                    </>
+                }
             </div>
         )
     }
     
-    
 }
+
+function ImageLightBox({src, alt, setState}:{src:string,alt:string, setState:(arg0:GalleryImage|null)=>void}){
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
+    
+    return(
+        <div onClick={(e) => e.currentTarget === e.target ? setState(null) : null} className="flex z-50 fixed w-full h-full top-0 bg-black/50 backdrop-blur-md justify-center items-center animate-in fade-in">
+            {!isLoaded && <p>Loading</p> }
+            <img onLoad={() => setIsLoaded(true)} id="shown-image" className={`max-w-4/5 h-fit max-h-4/5 z-50 ${isLoaded ? "opacity-100" : "opacity-0"}`} src={src} alt={alt} ></img>
+            
+        </div>
+    )
+}
+
+
