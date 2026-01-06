@@ -1,6 +1,54 @@
 ---
 import GalleryItems from "@/components/GalleryItems";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+
+const apiKey = import.meta.env.API_KEY;
+const endpoint = "https://bitsoc.ca/manage/api/files/gallery?token=" + String(apiKey);
+
+let data;
+let error = false;
+
+if (!apiKey) {
+    console.error("API KEY is not set in .env file");
+    error = true
+    /*
+    return new Response(
+        JSON.stringify({ message: "Server config error." }),
+       
+    { status: 501 }
+    );
+    */
+    
+}
+
+try {
+    const res = await fetch(endpoint);
+
+    if (!res.ok) {
+        error = true
+        throw new Error(`Failed to fetch from backend: ${res.statusText}`);
+    }
+
+    data = await res.json();
+    
+    /*
+    return new Response(JSON.stringify(data), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+    });
+    */
+
+} 
+catch (error) {
+    error = true
+     /*
+    return new Response(
+        JSON.stringify({ message:error }),
+        { status: 500 }
+    );
+    */
+}
 ---
 
 <BaseLayout title="Gallery">
@@ -11,6 +59,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
                 Welcome to the gallery! Here you will find a collection of images and media showcasing our events and activities.
             </p>
         </header>
-        <GalleryItems client:load />
+        <GalleryItems galleryData={data} error={error} client:load />
    </main>
 </BaseLayout>

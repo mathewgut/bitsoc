@@ -19,31 +19,10 @@ const fixGalleryUrl = (href:string) => {
 }
 
 
-export default function GalleryItems() {
-    const [data, setData] = useState<GalleryResponse|null>(null);
-    const [isLoading, setisLoading] = useState<boolean>(true);
+export default function GalleryItems({galleryData, error}:{galleryData:GalleryResponse|null, error:boolean}) {
+    const data = galleryData
+    const [isLoading, setisLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
-    
-    useEffect(()=>{
-        async function fetchGallery() {
-            try {
-                const response = await fetch("/connect/get-gallery/");
-                if (!response.ok) {
-                    setisLoading(false);
-                    setIsError(true);
-                }
-
-                const result: GalleryResponse = await response.json();
-                setisLoading(false);
-                setData(result);
-            } catch (error: any) {
-                setisLoading(false);
-                setIsError(true);
-            }
-        }
-        
-        fetchGallery();
-    },[])
     
     if(isError){
         return (
