@@ -43,7 +43,17 @@ export default function GalleryItems({galleryData, error}:{galleryData:GalleryRe
             </div>
         )
     }
-    else if(data) {
+
+    else if(data?.data && data.data.length == 0) {
+         return(
+            <div className="flex flex-col gap-2 w-fit h-fit justify-center items-center py-6 px-6 sm:px-12 shadow-md rounded-md border-2 border-bitsoc-blue/50">
+                <h2 className="sm:text-lg font-semibold">No images found!</h2>
+                <p className="text-sm text-center">Looks like our gallery is empty :(</p>
+            </div>
+        )
+    }
+
+    else if(data?.data && data.data.length >= 1) {
          return(
             <div className="flex flex-wrap gap-4 w-full h-fit justify-center items-center">
                 { data.data?.map((item, index) =>
