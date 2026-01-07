@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import "../styles/global.css";
 import type { JSX } from "astro/jsx-runtime";
 
-const buttonClasses = "px-4 py-2 hover:cursor-pointer rounded-md hover:bg-gray-200/50 transition-colors duration-200";
+const buttonClasses = "px-4 py-2 hover:cursor-pointer rounded-md active:bg-gray-200/50 hover:bg-gray-200/50 transition-colors duration-200";
 
 // sm: 640px, md:768px, lg:1024px, xl:1280px
 
