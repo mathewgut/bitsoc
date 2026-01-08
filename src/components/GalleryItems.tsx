@@ -22,12 +22,15 @@ const fixGalleryUrl = (href:string) => {
 
 
 
+
 export default function GalleryItems() {
     const [data, setData] = useState<GalleryResponse|null>(null);
     const [isLoading, setisLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
     const [selectedImage, setSelectedImage] = useState<GalleryImage|null>(null)
-    
+    const [sliceCount, setSliceCount] = useState<number>(1);
+
+
     useEffect(()=>{
         async function fetchGallery() {
             try {
@@ -84,7 +87,7 @@ export default function GalleryItems() {
     else if(data?.data && data.data.length >= 1) {
          return(
             <div className="flex flex-wrap gap-4 w-full h-fit justify-center items-center -mx-10 animate-in fade-in-20">
-                { data.data?.map((item, index) =>
+                { data.data?.slice(0,20*sliceCount).map((item, index) =>
                     <button onClick={() => setSelectedImage(item)} key={index} className="hover:scale-110 ease-in-out duration-200 hover:shadow-md "> 
                         <img className="h-fit w-30 sm:w-40 lg:w-45 xl:w-55 rounded-md" src={fixGalleryUrl(item.thumbnail)} />
                     </button> 
@@ -94,6 +97,7 @@ export default function GalleryItems() {
                     <ImageLightBox src={fixGalleryUrl(selectedImage.file)} alt={selectedImage.filename}  setState={setSelectedImage}/>
                     </>
                 }
+
             </div>
         )
     }

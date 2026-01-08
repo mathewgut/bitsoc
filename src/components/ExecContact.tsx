@@ -85,40 +85,48 @@ export default function ExecContact(){
         },[])
     
     if(isError){
-        return(<p>error</p>)
+        return(
+            <div className="flex flex-col gap-2 w-fit h-fit justify-center items-center py-4 px-8 shadow-md rounded-md border-2 border-bitsoc-blue/50">
+                    <h2 className="sm:text-lg font-semibold">Oops! Something went wrong loading contact information.</h2>
+                    <p className="text-sm">Try again later. If the issue persists feel free to reach out to us.</p>
+            </div>
+        )
     }
     else if (isLoading){
-        return(<p>Loading</p>)
+        return(
+            <section className="flex flex-col w-full h-300 gap-2 pt-10 px-2">
+                { Array.from({ length: 8 }).map((_, i) => 
+                    <article className="w-full h-1/24 rounded-sm animate-pulse bg-neutral-500" />
+                )}
+                
+            </section>
+        )
     }
     else if(data?.data.pages){
         return(
             <Accordion
                 type="single"
                 collapsible
-                className="w-full py-4 px-2 bg-white text-black"
+                className="w-full py-4 px-2 bg-white text-black animate-in fade-in duration-500"
                 defaultValue="item-1"
                 >
                 <h2 className="flex text-xl font-semibold">Executive info</h2>
             
                 { data.data.pages.reverse().map((item,index) => 
-                    
-                    <>
-                        <AccordionItem value={String(index)}>
-                            <AccordionTrigger className="cursor-pointer">{item.title}</AccordionTrigger>
-                            <AccordionContent className="flex flex-col gap-2 text-balance pl-4">
-                                <h2 className="text-lg font-semibold">
-                                    {parseContactContent(item.content).name}
-                                </h2>
-                                <div className="flex gap-2">
-                                    <p>Contact: </p>
-                                    <a type="mail" className="text-blue-500 hover:cursor-pointer hover:underline" href={"mailto:" + parseContactContent(item.content).contact}>
-                                        {parseContactContent(item.content).contact}
-                                    </a>
-                                </div>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </>
-                    
+                    <AccordionItem value={String(index)}>
+                        <AccordionTrigger className="cursor-pointer">{item.title}</AccordionTrigger>
+                        <AccordionContent className="flex flex-col gap-2 text-balance pl-4">
+                            <h2 className="text-lg font-semibold">
+                                {parseContactContent(item.content).name}
+                            </h2>
+                            <div className="flex gap-2">
+                                <p>Contact: </p>
+                                <a type="mail" className="text-blue-500 hover:cursor-pointer hover:underline" href={"mailto:" + parseContactContent(item.content).contact}>
+                                    {parseContactContent(item.content).contact}
+                                </a>
+                            </div>
+                        </AccordionContent>
+                    </AccordionItem>
                 )}
                 </Accordion>
            
