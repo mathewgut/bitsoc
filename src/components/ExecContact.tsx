@@ -94,7 +94,7 @@ export default function ExecContact(){
     }
     else if (isLoading){
         return(
-            <section className="flex flex-col w-full h-300 gap-2 pt-10 px-2">
+            <section className="flex flex-col w-full h-300 max-w-350 gap-2 pt-10 px-2">
                 { Array.from({ length: 8 }).map((_, i) => 
                     <article className="w-full h-1/24 rounded-sm animate-pulse bg-neutral-500" />
                 )}
@@ -107,7 +107,7 @@ export default function ExecContact(){
             <Accordion
                 type="single"
                 collapsible
-                className="w-full py-4 px-2 bg-white text-black animate-in fade-in duration-500"
+                className="w-full py-4 px-2 bg-bit text-black animate-in fade-in duration-500 max-w-350 border-bitsoc-orange"
                 defaultValue="item-1"
                 >
                 <h2 className="flex text-xl font-semibold">Executive info</h2>
@@ -116,9 +116,9 @@ export default function ExecContact(){
                     <AccordionItem value={String(index)}>
                         <AccordionTrigger className="cursor-pointer">{item.title}</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-2 text-balance pl-4">
-                            <h2 className="text-lg font-semibold">
+                            <h3 className="text-lg font-semibold">
                                 {parseContactContent(item.content).name}
-                            </h2>
+                            </h3>
                             <div className="flex gap-2">
                                 <p>Contact: </p>
                                 <a type="mail" className="text-blue-500 hover:cursor-pointer hover:underline" href={"mailto:" + parseContactContent(item.content).contact}>

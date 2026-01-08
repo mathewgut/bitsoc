@@ -1,15 +1,16 @@
 ---
 import ButtonOrange from "@/components/ButtonOrange.astro";
+import Footer from "@/components/Footer.astro";
 import NotFound from "@/components/NotFound";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Not Found">
-    <main class="flex flex-col pt-60 justify-center items-center">
+    <main class="flex flex-col h-screen pt-60 items-center">
         <NotFound client:only />
         <a href="/" class="mt-2">
             <ButtonOrange text="Go home" />
         </a>
     </main>
-
+    <Footer />
 </BaseLayout>

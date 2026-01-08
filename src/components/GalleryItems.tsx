@@ -25,6 +25,8 @@ export default function GalleryItems() {
     const [data, setData] = useState<GalleryResponse|null>(null);
     const [isLoading, setisLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
+
+    // lightbox open when Image, lightbox closed when null
     const [selectedImage, setSelectedImage] = useState<GalleryImage|null>(null)
     const [sliceCount, setSliceCount] = useState<number>(1);
 
@@ -95,7 +97,7 @@ export default function GalleryItems() {
                 )}
                 { selectedImage &&
                     <>
-                    <ImageLightBox src={fixGalleryUrl(selectedImage.file)} alt={selectedImage.filename}  setState={setSelectedImage}/>
+                        <ImageLightBox src={fixGalleryUrl(selectedImage.file)} alt={selectedImage.filename}  setState={setSelectedImage}/>
                     </>
                 }
                 
@@ -117,11 +119,9 @@ function GalleryImageItem({ url }: { url: string }) {
 
   return (
     <>
-     
       {!isLoaded && (
         <div className="animate-pulse bg-neutral-500 h-30 sm:h-40 lg:h-45 xl:h-55 w-30 sm:w-40 lg:w-45 xl:w-55 rounded-md" />
       )}
-
 
       <img
         onLoad={() => setIsLoaded(true)}
@@ -165,6 +165,8 @@ function ImageLightBox({src, alt, setState}:{src:string,alt:string, setState:(ar
                     <p className="text-white text-shadow-md">Loading...</p> 
                 </div> 
             }
+            <button onClick={() => setState(null)} className="bg-bitsoc-orange p-1 rounded-full drop-shadow absolute top-5 right-5 md:right-10 group hover:scale-110 ease-in-out duration-200" aria-label="Close button"><img className="invert-100 md:w-7 md:h-7 group-hover:invert-75" src="/x.svg" alt="close" /></button>
+
             <img style={{transform: `scale(${zoom})`}} ref={currentImage} onLoad={() => {setIsLoaded(true); setDimensions()}} id="shown-image" className={`rounded-xl ease-in-out drop-shadow-md duration-250 max-w-4/5 h-fit max-h-4/5 z-50 ${isLoaded ? "opacity-100 flex" : "opacity-0"}`} src={src} alt={alt} ></img>
             <div className={`flex mt-4 px-2 py-1 rounded-2xl items-center justify-between w-65 ${hasZoomedClasses} border-neutral-300 shadow border-2 delay-400 ease-in-out duration-300  ${isLoaded ? "opacity-100 flex" : "opacity-0"} z-50`}>
                 <button onClick={() => {zoom > 1 ? setZoom(zoom-0.2) : null; console.log(zoom)}} className={`p-1 sm:p-2 ${buttonClasses} ${zoomOutClasses} `} aria-label="zoom out button"><img className="w-4 h-4 sm:w-5 sm:h-5" src="zoom-out.svg" alt="zoom out" /></button>

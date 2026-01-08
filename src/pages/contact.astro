@@ -1,12 +1,15 @@
 ---
 import ExecContact from "@/components/ExecContact";
+import Footer from "@/components/Footer.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 ---
 
 <BaseLayout title="Contact us">
-    <main class="flex flex-col items-center w-full gap-10 justify-center px-12 lg:px-20 pb-20 pt-10 scroll-smooth">
-        <h1 class="text-3xl font-semibold">Contact Us</h1>
+    <main class="flex flex-col items-center w-full px-12 lg:px-20 pt-10 scroll-smooth h-screen">
+        <h1 class="text-3xl font-semibold pb-4">Contact Us</h1>
+        <p class="pb-14">Select an executive position below to the find contact information and current occupant</p>
         <ExecContact client:load />
     </main>
+    <Footer />
 </BaseLayout>
