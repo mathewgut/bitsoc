@@ -1,0 +1,12 @@
+---
+import ExecContact from "@/components/ExecContact";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+---
+
+<BaseLayout title="Contact us">
+    <main class="flex flex-col items-center w-full gap-10 justify-center px-12 lg:px-20 pb-20 pt-10 scroll-smooth">
+        <h1 class="text-3xl font-semibold">Contact Us</h1>
+        <ExecContact client:load />
+    </main>
+</BaseLayout>

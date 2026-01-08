@@ -124,7 +124,6 @@ function ImageLightBox({src, alt, setState}:{src:string,alt:string, setState:(ar
 
     return(
         <div onClick={(e) => e.currentTarget === e.target ? setState(null) : null} className="flex flex-col z-50 fixed w-full h-full top-0 bg-black/50 backdrop-blur-md justify-center items-center animate-in fade-in overflow-scroll">
-            
             {!isLoaded && 
                 <div className="absolute top-1/2 flex flex-col justify-center items-center gap-2 z-50">
                     <div className=" bg-bitsoc-orange animate-bounce rounded-full w-4 h-4 border-2 border-white" />
