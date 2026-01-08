@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
+
 interface GalleryImage {
     thumbnail: string;
     file: string;
@@ -19,9 +20,6 @@ const fixGalleryUrl = (href:string) => {
     const hrefArray = href.split("/");
     return "https://bitsoc.ca/" + hrefArray.slice(4).join("/")
 }
-
-
-
 
 export default function GalleryItems() {
     const [data, setData] = useState<GalleryResponse|null>(null);
@@ -85,11 +83,14 @@ export default function GalleryItems() {
     }
 
     else if(data?.data && data.data.length >= 1) {
+        console.log(data?.data)
+
          return(
+            <section className="flex flex-col justify-center items-center gap-4">
             <div className="flex flex-wrap gap-4 w-full h-fit justify-center items-center -mx-10 animate-in fade-in-20">
                 { data.data?.slice(0,20*sliceCount).map((item, index) =>
                     <button onClick={() => setSelectedImage(item)} key={index} className="hover:scale-110 ease-in-out duration-200 hover:shadow-md "> 
-                        <img className="h-fit w-30 sm:w-40 lg:w-45 xl:w-55 rounded-md" src={fixGalleryUrl(item.thumbnail)} />
+                        <GalleryImageItem url={item.thumbnail} />
                     </button> 
                 )}
                 { selectedImage &&
@@ -97,11 +98,41 @@ export default function GalleryItems() {
                     <ImageLightBox src={fixGalleryUrl(selectedImage.file)} alt={selectedImage.filename}  setState={setSelectedImage}/>
                     </>
                 }
-
+                
+           
             </div>
+                { 20*sliceCount <= data?.data.length &&
+                    <button onClick={() => setSliceCount(sliceCount+1)} className="w-fit py-2 px-8 my-2 hover:cursor-pointer text-bitsoc-orange border-2 border-bitsoc-orange rounded-lg hover:bg-bitsoc-orange hover:text-white transition-colors duration-300">
+                        Load more
+                    </button>
+                }
+            </section>
         )
     }
     
+}
+
+function GalleryImageItem({ url }: { url: string }) {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  return (
+    <>
+     
+      {!isLoaded && (
+        <div className="animate-pulse bg-neutral-500 h-30 sm:h-40 lg:h-45 xl:h-55 w-30 sm:w-40 lg:w-45 xl:w-55 rounded-md" />
+      )}
+
+
+      <img
+        onLoad={() => setIsLoaded(true)}
+        src={fixGalleryUrl(url)}
+        className={`
+          ${isLoaded ? "block fade-in animate-in opacity-100" : "hidden opacity-0"} 
+          duration-300 h-fit w-30 sm:w-40 lg:w-45 xl:w-55 rounded-md
+        `}
+      />
+    </>
+  );
 }
 
 function ImageLightBox({src, alt, setState}:{src:string,alt:string, setState:(arg0:GalleryImage|null)=>void}){
