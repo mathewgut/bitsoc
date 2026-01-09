@@ -22,11 +22,11 @@ import Image from "astro/components/Image.astro";
 				<div class="absolute bottom-0 w-full h-2/3 z-20 bg-linear-to-t from-black to-transparent" />
 		</div>
 	</article>
-    <main class="flex flex-col pt-10 px-12 lg:px-20 pb-20 items-center min-h-screen w-full scroll-smooth">
+    <main class="flex flex-col pt-10 px-8 lg:px-20 pb-20 items-center min-h-screen w-full scroll-smooth">
         <InnerNav client:only scrollThreshold={400} choices=
         {
             [
-                {title:"The Clubroom",shorthand:"clubroom"},
+                {title:"Clubroom",shorthand:"clubroom"},
                 {title:"Discounts",shorthand:"discounts"},
                 {title:"Be cool",shorthand:"cool"},
                 {title:"Pricing",shorthand:"price"},
@@ -35,18 +35,47 @@ import Image from "astro/components/Image.astro";
         } 
         />
 
-    <section class="flex flex-col mt-20 max-w-350 w-full gap-4">
-        <article class="flex flex-col justify-center gap-2 mb-8">
+    <section class="flex flex-col mt-24 max-w-350 w-full gap-4">
+        <article class="flex flex-col justify-center items-center gap-2 mb-8">
             <h2 class="text-4xl font-semibold text-left">The Clubroom</h2>
-            <p class="text-lg max-w-200">As a member of BITSoc, you are given access to the clubroom! A place to hangout with friends, play games, study, or snack!</p>
+            <p class="text-lg max-w-200 text-center">As a member of BITSoc, you are given access to the clubroom! A place to hangout with friends, play games, study, or snack!</p>
         </article>
     </section>
-    <>
-        <CardCarousel cardType="photos"  />
 
-        <h2>The Clubroom</h2>
-        <p>Becoming a member of BITSoc gets you access to the club room!</p>
+        <CardCarousel client:load  cardType="photos" data={
+            [
+                {title:"Clubroom in the dark", image:"/assets/club-room/club-dark.jpg", description:"The string lights illuminating the clubroom"},
+                {title:"Clubroom chalkboard", image:"/assets/club-room/club-chalkboard.jpg", description:"A closeup of the bitsoc chalkboard"},
+                {title:"Clubroom Xboxes and NES", image:"/assets/club-room/club-consoles.jpg", description:"Half of the lounge area with two TV's and cool consoles"},
+                {title:"Clubroom snacks section", image:"/assets/club-room/club-snacks.jpg", description:"The clubroom snack/beverages section"},
+                {title:"Other clubroom lounge section", image:"/assets/club-room/club-consoles-2.jpg", description:"Another view of the clubroom lounge section"},
+                {title:"Other books and boardgames", image:"/assets/club-room/club-books.jpg", description:"The club bookshelf with textbooks and board-games"},
 
+            ]
+        }  />
+
+        <section class="flex flex-col mt-12 max-w-300 w-full gap-4">
+            <article class="flex flex-col justify-center gap-2 mb-8">
+                <h3 class="text-2xl font-semibold text-left">Clubroom ammenities</h3>
+                <ul class="list-disc pl-8 text-lg">
+                    <li>
+                        Heat up and store many foods and liquids with the mini-fridge and microwave
+                    </li>
+                    <li>
+                        Access to a bunch of textbooks and academic material
+                    </li>
+                    <li>
+                        Free hot chocolate and coffee! Who doesn't love free?
+                    </li>
+                    <li>
+                        Access to numerous gaming consoles including an NES, Switch, original XBOX, XBOX 360, and PS4
+                    </li>
+                    <li>
+                        Ruin friendships with our board-games such as Monopoly!
+                    </li>
+                </ul>
+            </article>
+        </section>
         <h3>Snacks</h3>
         <h3>Consoles</h3>
         <h3>Text books</h3>

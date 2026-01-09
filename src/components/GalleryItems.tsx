@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 
-interface GalleryImage {
+export interface GalleryImage {
     thumbnail: string;
     file: string;
     filename: string;
@@ -27,7 +27,7 @@ export default function GalleryItems() {
     const [isError, setIsError] = useState<boolean>(false);
 
     // lightbox open when Image, lightbox closed when null
-    const [selectedImage, setSelectedImage] = useState<GalleryImage|null>(null)
+    const [selectedImage, setSelectedImage] = useState<GalleryImage|null|string>(null)
     const [sliceCount, setSliceCount] = useState<number>(1);
 
 
@@ -95,7 +95,7 @@ export default function GalleryItems() {
                         <GalleryImageItem url={item.thumbnail} />
                     </button> 
                 )}
-                { selectedImage &&
+                { selectedImage && typeof selectedImage === 'object' &&
                     <>
                         <ImageLightBox src={fixGalleryUrl(selectedImage.file)} alt={selectedImage.filename}  setState={setSelectedImage}/>
                     </>
@@ -135,7 +135,7 @@ function GalleryImageItem({ url }: { url: string }) {
   );
 }
 
-function ImageLightBox({src, alt, setState}:{src:string,alt:string, setState:(arg0:GalleryImage|null)=>void}){
+export function ImageLightBox({src, alt, setState}:{src:string,alt:string, setState:(arg0:GalleryImage|null|string)=>void}){
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [zoom, setZoom] = useState<number>(1);
     const [imageBaseHeight, setImageBaseHeight] = useState<number>(0);
