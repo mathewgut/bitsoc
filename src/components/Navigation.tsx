@@ -99,7 +99,7 @@ function Sidebar ({isOpen}: {isOpen: boolean}) {
                         <li><a href="/"><button className={buttonClasses}>Home</button></a></li>
                         <li><a href="/about"><button className={buttonClasses}>Events</button></a></li>
                         <li><a href="/about"><button className={buttonClasses}>About</button></a></li>
-                        <li><a href="/about"><button className={buttonClasses}>Membership</button></a></li>
+                        <li><a href="/membership"><button className={buttonClasses}>Membership</button></a></li>
                         <li><a href="/programs"><button className={buttonClasses}>BIT Programs</button></a></li>
                         <li><a href="/gallery"><button className={buttonClasses}>Gallery</button></a></li>
                         <li><a href="/contact"><button className={buttonClasses}>Contact us</button></a></li>
