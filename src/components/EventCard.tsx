@@ -1,5 +1,5 @@
 // cards used in IndexEvents component to show events
-export default function EventCard({title, description, image, type}:{title:string, description:string, image:string, type?:"svg"|"img"}) {
+export default function EventCard({title, description, image, link, type}:{title:string, description:string, image:string, link?:string, type?:"svg"|"img"}) {
     if( type === "svg") {
         return (
             <article className="hover:scale-105 ease-in-out duration-200 hover:cursor-pointer">
@@ -11,9 +11,11 @@ export default function EventCard({title, description, image, type}:{title:strin
                         <p className="text-gray-700 text-base">{description}</p>
                     </div>
                 </div>
-                <button className="w-2/3  mb-4 py-2 px-4 my-8 hover:cursor-pointer text-bitsoc-orange border-2 border-bitsoc-orange rounded-lg hover:bg-bitsoc-orange hover:text-white transition-colors duration-300">
-                    More information
-                </button>
+                <a className="flex w-2/3 mb-4 my-8 justify-center" href={link ?? " "}>
+                    <button className=" py-2 px-4 hover:cursor-pointer text-bitsoc-orange border-2 border-bitsoc-orange rounded-lg hover:bg-bitsoc-orange hover:text-white transition-colors duration-300">
+                        More information
+                    </button>
+                </a>
             </div>
             
         </article>

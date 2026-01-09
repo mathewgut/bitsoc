@@ -84,12 +84,13 @@ import Footer from "@/components/Footer.astro";
 		</header>
 
 		<div class="flex justify-center items-center px-12 lg:px-30 w-full mb-40">
-			<CardCarousel client:visible cardType="svg" 
+			<CardCarousel client:visible cardType="info" 
 			data={
-				[{title:"Interactive Multimedia Design",description:"A focus on multimedia best practices and the creation of multimedia such as games, websites, films, XR, and animation. ", image:"/rectangle-goggles.svg"}, 
-				{title:"Networking Technology",description:"Theory and practical application of the design, planning, and administration of networks.", image:"/network.svg"}, 
-				{title:"Optical Sensors & Systems",description:"Explores everything to do with light and light based technologies including computer vision, laser technology, and autonomous vehicles.", image:"/lightbulb.svg"},
-				{title:"Information Resource Management",description:"Creates and studies the management of data, datastores, and their surrounding infastructure.", image:"/database.svg"}
+				[
+					{title:"Interactive Multimedia Design",description:"A focus on multimedia best practices and the creation of multimedia such as games, websites, films, XR, and animation. ", image:"/rectangle-goggles.svg", link:"/programs#IMD"}, 
+					{title:"Networking Technology",description:"Theory and practical application of the design, planning, and administration of networks.", image:"/network.svg", link:"/programs#NET"}, 
+					{title:"Optical Sensors & Systems",description:"Explores everything to do with light and light based technologies including computer vision, laser technology, and autonomous vehicles.", image:"/lightbulb.svg", link:"/programs#OSS"},
+					{title:"Information Resource Management",description:"Creates and studies the management of data, datastores, and their surrounding infastructure.", image:"/database.svg", link:"/programs#IRM"}
 				]
 			} />
 		</div>

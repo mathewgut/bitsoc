@@ -1,5 +1,4 @@
-import { Scroll } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import{ useEffect, useState } from "react";
 
 
 interface Choice {
@@ -78,7 +77,7 @@ export default function InnerNav({scrollThreshold,choices}:{scrollThreshold:numb
                 {choices.map((item, index) =>
                     <a onClick={() => ScrollToElement(document.getElementById(item.shorthand) ?? null, isSmall)} aria-label={`${item.shorthand} Navigation button`}>
                         <article className="text-center sm:text-lg p-4 w-fit flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-full backdrop-blur-md bg-white/60 shadow-md border-2 border-neutral-300">
-                            <h3 className="font-semibold">IMD</h3>
+                            <h3 className="font-semibold">{item.shorthand}</h3>
                         </article>
                     </a>
                 )}

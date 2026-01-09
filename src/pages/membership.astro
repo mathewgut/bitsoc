@@ -1,14 +1,50 @@
 ---
 import ButtonOrange from "@/components/ButtonOrange.astro";
+import CardCarousel from "@/components/CardCarousel";
 import Footer from "@/components/Footer.astro";
+import InnerNav from "@/components/InnerNav";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Image from "astro/components/Image.astro";
 ---
 
 <BaseLayout title="Membership">
-    <main class="flex flex-col pt-10 items-center min-h-screen">
-        <h1 class="text-5xl font-semibold pb-4">Become a member</h1>
-        <ButtonOrange text="Join" />
-        <h2>The clubroom</h2>
+    <article class="relative z-30 flex flex-col justify-center w-full h-100 lg:h-125 overflow-clip">
+		<div class="flex flex-col text-white w-full h-full items-center sm:items-center sm:w-fit sm:px-0 sm:left-10 lg:left-30 absolute z-30">
+			<h1 class="flex h-full text-5xl md:text-7xl font-semibold text-left items-center">Membership</h1>
+		</div>
+		
+		<div class="relative flex">
+            { /* the built in astro image component is optimized and maintains size before the image is loaded */}
+            
+			<Image width={"700"} height={"400"} class="animate-in fade-in duration-200 ease-in-out relative z-10 w-full h-fit min-w-200 object-cover " src="https://bitsoc.ca/manage/bl-content/uploads/pages/gallery/PXL_20240208_022051477.MP.jpg" alt="Azrieli Pavillion building at Carleton University"/>
+                <div class="absolute bottom-0 w-full sm:w-2/3 h-full z-20 bg-linear-to-b sm:bg-linear-to-r from-black to-transparent" />
+                <div class="absolute bottom-0 w-full sm:-w-2/3 h-full z-20 bg-linear-to-b sm:bg-linear-to-l from-black/50 to-transparent" />
+				<div class="absolute bottom-0 w-full h-2/3 z-20 bg-linear-to-t from-black to-transparent" />
+		</div>
+	</article>
+    <main class="flex flex-col pt-10 px-12 lg:px-20 pb-20 items-center min-h-screen w-full scroll-smooth">
+        <InnerNav client:only scrollThreshold={400} choices=
+        {
+            [
+                {title:"The Clubroom",shorthand:"clubroom"},
+                {title:"Discounts",shorthand:"discounts"},
+                {title:"Be cool",shorthand:"cool"},
+                {title:"Pricing",shorthand:"price"},
+
+            ]
+        } 
+        />
+
+    <section class="flex flex-col mt-20 max-w-350 w-full gap-4">
+        <article class="flex flex-col justify-center gap-2 mb-8">
+            <h2 class="text-4xl font-semibold text-left">The Clubroom</h2>
+            <p class="text-lg max-w-200">As a member of BITSoc, you are given access to the clubroom! A place to hangout with friends, play games, study, or snack!</p>
+        </article>
+    </section>
+    <>
+        <CardCarousel cardType="photos"  />
+
+        <h2>The Clubroom</h2>
         <p>Becoming a member of BITSoc gets you access to the club room!</p>
 
         <h3>Snacks</h3>
