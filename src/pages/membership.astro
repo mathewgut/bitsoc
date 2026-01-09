@@ -1,10 +1,23 @@
 ---
+import ButtonOrange from "@/components/ButtonOrange.astro";
+import Footer from "@/components/Footer.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Membership">
-    <main class="flex flex-col pt-10">
-        <h1 class="text-4xl font-semibold">Become a member</h1>
-        
+    <main class="flex flex-col pt-10 items-center min-h-screen">
+        <h1 class="text-5xl font-semibold pb-4">Become a member</h1>
+        <ButtonOrange text="Join" />
+        <h2>The clubroom</h2>
+        <p>Becoming a member of BITSoc gets you access to the club room!</p>
+
+        <h3>Snacks</h3>
+        <h3>Consoles</h3>
+        <h3>Text books</h3>
+        <h2>Discounts</h2>
+        <h2>Be cool</h2>
+        <h2>Pricing</h2>
+
     </main>
+    <Footer />
 </BaseLayout>
