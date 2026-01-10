@@ -94,9 +94,9 @@ export default function ExecContact(){
     }
     else if (isLoading){
         return(
-            <section className="flex flex-col w-full h-300 max-w-350 gap-2 pt-10 px-2">
+            <section className="flex flex-col w-full h-300 max-w-350 gap-2 pt-12 px-2">
                 { Array.from({ length: 8 }).map((_, i) => 
-                    <article className="w-full h-1/24 rounded-sm animate-pulse bg-neutral-500" />
+                    <article className="w-full h-12 rounded-sm animate-pulse bg-neutral-500" />
                 )}
                 
             </section>

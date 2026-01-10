@@ -7,6 +7,7 @@ interface Choice {
 }
 
 
+// shorthand is used for text options on small screens and as target ID's to jump to on a page
 export default function InnerNav({scrollThreshold,choices}:{scrollThreshold:number,choices:Choice[]} ) {
     const [isSmall, setIsSmall] =  useState<boolean>();
     const [hasPassedThreshold, setHasPassedThreshold] = useState<boolean>(false);
@@ -48,22 +49,22 @@ export default function InnerNav({scrollThreshold,choices}:{scrollThreshold:numb
     }, [window.onresize]
     )
 
-    const ScrollToElement = (element: HTMLElement|null, small?: boolean) => {
+    const ScrollToElement = (element: HTMLElement|null) => {
         if(!element) return;
-        const navbarHeight = small ? 140 : 200; // Adjust to your navbar height
-        const elementPosition = element.offsetTop - navbarHeight;
+        const navbarHeight = 140; 
+        const elementPosition = element.offsetTop - navbarHeight; // set offset when scrolling to element to account for size of navbar
         window.scrollTo({ top: elementPosition, left: 0, behavior: 'smooth' });
     }
 
     if(!isSmall){
         return(
-            <div className={`flex justify-center items-center sticky sm:p-2 top-18 z-30 w-fit backdrop-blur-md bg-white/60 shadow-md border-2 border-neutral-300 rounded-md`}>
+            <div className={`flex justify-center items-center sticky sm:p-2 top-15 z-30 w-fit backdrop-blur-md bg-white/60 shadow-md border-2 border-neutral-300 rounded-md`}>
                 {choices.map((item, index) =>
-                <a onClick={() => ScrollToElement(document.getElementById(item.shorthand) ?? null, isSmall)} aria-label={`${item.shorthand} Navigation button`}>
-                    <article data-program className={
+                <a onClick={() => ScrollToElement(document.getElementById(item.shorthand.toLowerCase()) ?? null)} aria-label={`${item.shorthand} Navigation button`}>
+                    <button data-program className={
                         `${navStyles} ease-in-out duration-300 `}>
-                        <h3>{item.title}</h3>
-                    </article>
+                        {item.title}
+                    </button>
                 </a>
                 )}
             </div>
@@ -73,12 +74,12 @@ export default function InnerNav({scrollThreshold,choices}:{scrollThreshold:numb
 
     else if (isSmall){
         return(
-            <div className="flex justify-center gap-2 sm:gap-6 mb-4 -mx-50 rounded-lg flex-wrap sticky top-20 z-30 w-fit ">
+            <div className="flex justify-center gap-2 sm:gap-6 mb-4 p-2 -mx-50 rounded-lg flex-wrap sticky top-15 z-30 w-fit hover:cursor-pointer  backdrop-blur-md bg-white/60 shadow-md border-2 border-neutral-300">
                 {choices.map((item, index) =>
-                    <a onClick={() => ScrollToElement(document.getElementById(item.shorthand) ?? null, isSmall)} aria-label={`${item.shorthand} Navigation button`}>
-                        <article className="text-center sm:text-lg p-4 w-fit flex flex-col gap-2 hover:cursor-pointer hover:bg-gray-200 transition-colors duration-300 rounded-full backdrop-blur-md bg-white/60 shadow-md border-2 border-neutral-300">
-                            <h3 className="font-semibold">{item.shorthand}</h3>
-                        </article>
+                    <a onClick={() => ScrollToElement(document.getElementById(item.shorthand.toLowerCase()) ?? null)} aria-label={`${item.shorthand} Navigation button`}>
+                        <button className="text-center font-semibold sm:text-lg w-fit p-2 flex flex-col gap-2 rounded-md hover:bg-gray-200 transition-colors duration-300">
+                            {item.shorthand}
+                        </button>
                     </a>
                 )}
             </div>

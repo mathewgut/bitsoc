@@ -5,6 +5,7 @@ import ProgramNav from "../components/ProgramNav.tsx";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { setTextLength } from "@/tools";
 import Image from "astro/components/Image.astro";
+import InnerNav from "@/components/InnerNav";
 ---
 
 <BaseLayout title="BIT Programs">
@@ -49,9 +50,17 @@ import Image from "astro/components/Image.astro";
             </div>
         </section>
 
-        <ProgramNav client:only />
+        <InnerNav scrollThreshold={850} choices={
+            [
+                {title:"Interactive Multimedia & Design", shorthand:"IMD"},
+                {title:"Network Technology", shorthand:"NET"},
+                {title:"Information Resource Management", shorthand:"IRM"},
+                {title:"Optical Sensors & Systems", shorthand:"OSS"},
+            ]
+        } 
+        client:only />
 
-        <section id="IMD" class="flex pb-4 w-full flex-col max-w-250 lg:max-w-300">
+        <section id="IMD" class="flex pb-4 w-full flex-col max-w-250 lg:max-w-300 mt-24">
             <h2 class="text-3xl font-semibold text-left">
                 Interactive Multimedia and Design (IMD)
             </h2>

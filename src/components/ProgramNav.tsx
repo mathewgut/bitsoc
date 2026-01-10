@@ -2,6 +2,7 @@ import { Scroll } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 
+// legacy of inner nav built for program page
 export default function ProgramNav() {
     const [isSmall, setIsSmall] =  useState<boolean>();
     const [hasPassedThreshold, setHasPassedThreshold] = useState<boolean>(false);
@@ -14,7 +15,7 @@ export default function ProgramNav() {
     useEffect(() =>{
 
         const handlePosChange = () => {
-            if (window.scrollY >= 1050) {
+            if (window.scrollY >= 850) {
                 console.log("scrolled past threshold");
                 setHasPassedThreshold(true);
             } else {

@@ -1,10 +1,48 @@
 ---
 import ButtonOrange from "@/components/ButtonOrange.astro";
 import CardCarousel from "@/components/CardCarousel";
+import EventCard from "@/components/EventCard";
 import Footer from "@/components/Footer.astro";
 import InnerNav from "@/components/InnerNav";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Image from "astro/components/Image.astro";
+import { marked } from "marked";
+
+
+
+const apiKey = import.meta.env.API_KEY;
+const endpoint = "https://bitsoc.ca/manage/api/pages/sign-up?token=" + String(apiKey);
+let error:boolean = false;
+let data;
+let response:string = ""
+
+
+if (!apiKey) {
+    console.error("API KEY is not set in .env file");
+    error = true
+}
+
+try {
+    const res = await fetch(endpoint);
+    console.log("trying")
+
+    if (!res.ok) {
+        console.log(res)
+        error = true
+        throw new Error(`Failed to fetch from backend: ${res.statusText}`);
+    }
+
+    data = await res.json();
+
+    const markupString = String(marked(data.data.content)).trim();
+    const link = markupString.slice(3, -4);
+    response = link;
+
+} 
+catch (error) {
+    console.log(error)
+    error = true
+}
 ---
 
 <BaseLayout title="Membership">
@@ -26,23 +64,46 @@ import Image from "astro/components/Image.astro";
         <InnerNav client:only scrollThreshold={400} choices=
         {
             [
-                {title:"Clubroom",shorthand:"clubroom"},
-                {title:"Discounts",shorthand:"discounts"},
-                {title:"Be cool",shorthand:"cool"},
-                {title:"Pricing",shorthand:"price"},
-
+                {title:"Join us!",shorthand:"Join"},
+                {title:"Clubroom",shorthand:"Clubroom"},
+                {title:"More Perks",shorthand:"Perks"},
+                
             ]
         } 
         />
 
-    <section class="flex flex-col mt-24 max-w-350 w-full gap-4">
+        <section id="join" class="flex flex-col mt-16 max-w-350 w-full gap-4 items-center ">
+                { !error && response &&
+                   <article class="flex p-1 px-1 my-12 border-2 w-fit border-neutral-300 shadow-md rounded-lg">
+                        <section class="rounded-lg p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div class="text-left">
+                                <h2 class="text-black text-3xl font-semibold">Join BITSoc</h2>
+                                <p class="text-neutral-800 mt-2 text-center sm:text-left">Access to the clubroom, discounts, and bragging rights.</p>
+                            </div>
+                            <div class="flex flex-col items-centergap-3">
+                                <a href={response} target="_blank" >
+                                    <ButtonOrange text="Sign-up" />
+                                </a>
+                            </div>
+                        </section>
+                   </article>
+                }
+                { error &&
+                    <p>{response}</p>
+                }
+                
+        </section>
+
+
+
+    <section id="clubroom" class="flex flex-col mt-24 max-w-350 w-full gap-4">
         <article class="flex flex-col justify-center items-center gap-2 mb-8">
-            <h2 class="text-4xl font-semibold text-left">The Clubroom</h2>
-            <p class="text-lg max-w-200 text-center">As a member of BITSoc, you are given access to the clubroom! A place to hangout with friends, play games, study, or snack!</p>
+            <h2 class="text-3xl sm:text-4xl font-semibold text-left">The Clubroom</h2>
+            <p class="sm:text-lg max-w-200 text-center">As a member of BITSoc, you are given 24/7 access to the clubroom! A place to hangout with friends, play games, study, or snack!</p>
         </article>
     </section>
 
-        <CardCarousel client:load  cardType="photos" data={
+        <CardCarousel client:only cardType="photos" data={
             [
                 {title:"Clubroom in the dark", image:"/assets/club-room/club-dark.jpg", description:"The string lights illuminating the clubroom"},
                 {title:"Clubroom chalkboard", image:"/assets/club-room/club-chalkboard.jpg", description:"A closeup of the bitsoc chalkboard"},
@@ -50,38 +111,50 @@ import Image from "astro/components/Image.astro";
                 {title:"Clubroom snacks section", image:"/assets/club-room/club-snacks.jpg", description:"The clubroom snack/beverages section"},
                 {title:"Other clubroom lounge section", image:"/assets/club-room/club-consoles-2.jpg", description:"Another view of the clubroom lounge section"},
                 {title:"Other books and boardgames", image:"/assets/club-room/club-books.jpg", description:"The club bookshelf with textbooks and board-games"},
-
             ]
         }  />
 
         <section class="flex flex-col mt-12 max-w-300 w-full gap-4">
             <article class="flex flex-col justify-center gap-2 mb-8">
-                <h3 class="text-2xl font-semibold text-left">Clubroom ammenities</h3>
-                <ul class="list-disc pl-8 text-lg">
+                <h3 class="text-xl sm:text-2xl font-semibold text-left">Clubroom ammenities</h3>
+                <ul class="list-disc pl-8 sm:text-lg">
                     <li>
                         Heat up and store many foods and liquids with the mini-fridge and microwave
                     </li>
                     <li>
-                        Access to a bunch of textbooks and academic material
+                        Access to our collection of academic textbooks
                     </li>
                     <li>
-                        Free hot chocolate and coffee! Who doesn't love free?
+                        Free hot chocolate and coffee!
                     </li>
                     <li>
                         Access to numerous gaming consoles including an NES, Switch, original XBOX, XBOX 360, and PS4
                     </li>
                     <li>
-                        Ruin friendships with our board-games such as Monopoly!
+                        Ruin friendships with our board games such as Monopoly!
+                    </li>
+                    <li>
+                        Amazing whiteboard and chalkboard art
                     </li>
                 </ul>
             </article>
         </section>
-        <h3>Snacks</h3>
-        <h3>Consoles</h3>
-        <h3>Text books</h3>
-        <h2>Discounts</h2>
-        <h2>Be cool</h2>
-        <h2>Pricing</h2>
+
+        <section id="perks" class="flex flex-col mt-24 max-w-350 w-full gap-4">
+            <article class="flex flex-col justify-center items-center gap-2 mb-8">
+                <h2 class="text-3xl sm:text-4xl font-semibold text-left">Perks</h2>
+                <p class="sm:text-lg max-w-200 text-center">Some other benefits of becoming a BITSoc member</p>
+
+            </article>
+            <section class="flex flex-col md:flex-row gap-6 items-center justify-center">
+                <EventCard type="detail" title="Events" description="Get discounts on fees and covers for BITSoc events", image="/ticket.svg" client:visible />
+                <EventCard type="detail" title="Merch" description="Look your best with discounts on BITSoc merch!", image="/shirt.svg" client:visible />
+                <EventCard type="detail" title="Discord role" description="Get a member role in our Discord!", image="/discord-black.png" client:visible />
+                
+            </section>
+        </section>
+
+         
 
     </main>
     <Footer />
