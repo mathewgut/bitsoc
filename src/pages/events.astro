@@ -1,0 +1,36 @@
+---
+import Footer from "@/components/Footer.astro";
+import UpcomingEvents from "@/components/UpcomingEvents";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Image from "astro/components/Image.astro";
+---
+
+<BaseLayout title="Events"> 
+    <article class="relative z-30 flex flex-col justify-center w-full h-100 lg:h-125 overflow-clip">
+		<div class="flex flex-col text-white w-full h-full items-center sm:items-center sm:w-fit sm:px-0 sm:left-10 lg:left-30 absolute z-30">
+			<h1 class="flex h-full text-5xl md:text-7xl font-semibold text-left items-center">Events</h1>
+		</div>
+		
+		<div class="relative flex">
+            { /* the built in astro image component is optimized and maintains size before the image is loaded */}
+            
+			<Image width={"700"} height={"400"} class="animate-in fade-in duration-200 ease-in-out relative z-10 w-full h-fit min-w-200 object-cover " src="https://bitsoc.ca/manage/bl-content/uploads/pages/gallery/2023_BubbleTea-36.jpg" alt="Azrieli Pavillion building at Carleton University"/>
+                <div class="absolute bottom-0 w-full sm:w-2/3 h-full z-20 bg-linear-to-b sm:bg-linear-to-r from-black to-transparent" />
+				<div class="absolute bottom-0 w-full h-2/3 z-20 bg-linear-to-t from-black to-transparent" />
+		</div>
+	</article>
+    <main class="flex flex-col items-center w-full gap-10 justify-center px-12 lg:px-20 pb-20 pt-10 scroll-smooth">
+        <h2 class="text-3xl sm:text-4xl font-semibold text-left">Upcoming events</h2>
+		<UpcomingEvents client:load />
+
+		<section class="my-5 flex flex-col gap-4 w-full" >
+			<h2 class="text-xl sm:text-2xl font-semibold text-left">
+				Have a question about events?
+			</h2>
+			<span class="">
+				You can contact our events team for more information <a class="underline text-bitsoc-orange" href="/contact">here</a>.
+			</span>
+		</section>
+    </main>
+	<Footer />
+</BaseLayout>

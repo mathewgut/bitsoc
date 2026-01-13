@@ -6,40 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-
-export interface Response {
-  status: string;
-  message: string;
-  data: CategoryData;
-}
-
-export interface CategoryData {
-  key: string;
-  name: string;
-  description: string;
-  permalink: string;
-  pages: BluditPage[];
-}
-
-export interface BluditPage {
-  key: string;
-  title: string;
-  content: string;
-  contentRaw: string;
-  description: string;
-  type: "published" | "draft" | "static" | "sticky"; 
-  slug: string;
-  date: string;
-  dateRaw: string;
-  tags: string | string[];
-  username: string;
-  category: string;
-  uuid: string;
-  dateUTC: string;
-  permalink: string;
-  coverImage: string | boolean;
-  coverImageFilename: string | boolean;
-}
+import type { BluditPage, BluditResponse } from "@/types";
 
 // assumes the contact object is inside the <p></p> tag
 // contact string input should be in format: <p>{name:my name, contact:mail@mail.com}</p>
@@ -58,7 +25,7 @@ const parseContactContent = (contact:BluditPage["content"]) => {
 
 
 export default function ExecContact(){
-    const [data, setData] = useState<Response | null>(null);
+    const [data, setData] = useState<BluditResponse | null>(null);
     const [isLoading, setisLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
 
@@ -71,7 +38,7 @@ export default function ExecContact(){
                     setIsError(true);
                 }
 
-                const result: Response = await response.json();
+                const result: BluditResponse = await response.json();
                 setisLoading(false);
                 setData(result);
             } catch (error: any) {
@@ -96,7 +63,7 @@ export default function ExecContact(){
         return(
             <section className="flex flex-col w-full h-300 max-w-350 gap-2 pt-12 px-2">
                 { Array.from({ length: 8 }).map((_, i) => 
-                    <article className="w-full h-12 rounded-sm animate-pulse bg-neutral-500" />
+                    <article key={i} className="w-full h-12 rounded-sm animate-pulse bg-neutral-500" />
                 )}
                 
             </section>
@@ -113,7 +80,7 @@ export default function ExecContact(){
                 <h2 className="flex text-xl font-semibold">Executive info</h2>
             
                 { data.data.pages.reverse().map((item,index) => 
-                    <AccordionItem value={String(index)}>
+                    <AccordionItem key={index} value={String(index)}>
                         <AccordionTrigger className="cursor-pointer">{item.title}</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-2 text-balance pl-4">
                             <h3 className="text-lg font-semibold">

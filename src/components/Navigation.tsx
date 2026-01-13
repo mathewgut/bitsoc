@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import "../styles/global.css";
 import type { JSX } from "astro/jsx-runtime";
 
-const buttonClasses = "px-4 py-2 hover:cursor-pointer rounded-md active:bg-gray-200/50 hover:bg-gray-200/50 transition-colors duration-200";
+const buttonClasses = "flex px-4 py-4 hover:cursor-pointer rounded-md active:bg-gray-200/50 hover:bg-gray-200/50 transition-colors duration-200 w-full ";
 
 // sm: 640px, md:768px, lg:1024px, xl:1280px
 
@@ -71,7 +71,7 @@ function MobileNav () {
 
     return (
         <>
-            <Sidebar isOpen={isOpen} />
+            <Sidebar setIsOpen={setIsOpen} isOpen={isOpen} />
             <nav className={"flex fixed top-0 z-50 justify-between  items-center w-full h-14 pl-5 pr-2 backdrop-blur-xs text-lg border-b border-black bg-white"}>
                 <a className="flex h-15" href="/">
                     <button>
@@ -79,7 +79,7 @@ function MobileNav () {
                     </button>
                 </a>
 
-                <button className={buttonClasses} onClick={() => setIsOpen(!isOpen)}> 
+                <button className={"p-3 hover:cursor-pointer rounded-md active:bg-gray-200/50 hover:bg-gray-200/50 transition-colors duration-200"} onClick={() => setIsOpen(!isOpen)}> 
                     <img className={isOpen ? openStyles : closedStyles} src="/menu.svg" alt="menu" />
                 </button>
             </nav>
@@ -87,17 +87,17 @@ function MobileNav () {
     )
 }
 
-function Sidebar ({isOpen}: {isOpen: boolean}) {
+function Sidebar ({isOpen, setIsOpen}: {isOpen: boolean, setIsOpen:(input:boolean) => void}) {
     if (isOpen){
         // locks scrolling when sidebar is open
         document.body.classList.add("overflow-y-hidden")
         return (
-            <aside className="fixed ease-in-out duration-200 top-0 right-0 w-svw h-svh backdrop-blur-xs shadow-lg z-50 animate-in fade-in">
+            <aside onClick={event => event.target == event.currentTarget ? setIsOpen(false) : null} className="fixed ease-in-out duration-200 top-0 right-0 w-svw h-svh backdrop-blur-xs shadow-lg z-50 animate-in fade-in">
                 <div className="fixed ease-in-out duration-200 top-0 right-0 w-64 h-full bg-white shadow-lg z-50 animate-in fade-in border-l-black border-l-1">
                     <button className="absolute top-4 right-4" ></button>
-                    <ul className="mt-16 flex flex-col gap-4 px-4">
+                    <ul className="mt-16 flex flex-col px-4">
                         <li><a href="/"><button className={buttonClasses}>Home</button></a></li>
-                        <li><a href="/about"><button className={buttonClasses}>Events</button></a></li>
+                        <li><a href="/events"><button className={buttonClasses}>Events</button></a></li>
                         <li><a href="/about"><button className={buttonClasses}>About</button></a></li>
                         <li><a href="/membership"><button className={buttonClasses}>Membership</button></a></li>
                         <li><a href="/programs"><button className={buttonClasses}>BIT Programs</button></a></li>

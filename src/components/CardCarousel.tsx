@@ -4,15 +4,15 @@ import { ImageLightBox, type GalleryImage } from "./GalleryItems";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-export default function CardCarousel({ cardType, data }: { cardType?: "info" | "event" | "photos", data?: Array<{ title: string, date?: string, link?: string, description: string, image: string }> }) {
+export default function CardCarousel({ cardType, data }: { cardType?: "info" | "event" | "photos", data?: Array<{ title: string, date?: string, link?: string, description: string, location?:string, image: string }> }) {
     // 1. Initialize state for the lightbox
     const [selectedImage, setSelectedImage] = useState<string | GalleryImage | null>(null);
 
     if (!data || data.length === 0) {
         return (
-            <section className="flex w-full justify-center items-center ">
-                <article className="hover:scale-105 ease-in-out duration-200 hover:cursor-pointer ">
-                    <div className="flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-45 sm:w-55 lg:w-65 scroll-smooth scroll justify-center items-center h-80" >
+            <section className="flex w-full justify-center items-center pb-6">
+                <article className="hover:scale-105 ease-in-out duration-200 hover:cursor-pointer bg-white text-center">
+                    <div className="flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-45 sm:w-55 lg:w-65 scroll-smooth scroll justify-center items-center h-80 " >
                         <h3 className="text-xl font-semibold mb-2">No events found</h3>
                         <p className="text-gray-700 text-base">There are currently no events.</p>
                     </div>
@@ -105,6 +105,8 @@ export default function CardCarousel({ cardType, data }: { cardType?: "info" | "
                                 title={item.title}
                                 description={item.description}
                                 image={item.image}
+                                date ={item.date} 
+                                location={item.location}
                             />
                         </div>
                     </CarouselItem>

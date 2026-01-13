@@ -1,5 +1,6 @@
 // container events are stored in for main page
 import CardCarousel from "./CardCarousel";
+import UpcomingEvents from "./UpcomingEvents";
 
 
 const dummyEvents = [
@@ -45,13 +46,13 @@ const dummyEvents = [
 export default function IndexEvents() {
 
 	 return (
-		<section className="relative flex justify-center w-full py-5 bg-linear-0 px-20">
-			<CardCarousel cardType="event" />
+		<section className="relative flex justify-center w-full py-5 bg-linear-0 ">
+			<UpcomingEvents />
 
 			<div className="absolute hidden sm:block bottom-0 right-0 bg-bitsoc-lblue h-50 w-50 sm:h-40 sm:w-40 rounded-full -z-10"/>
 			<div className="absolute sm:-top-20 sm:-left-10 bg-bitsoc-lblue h-70 w-70 rounded-full -z-10"/>
 		</section>
-  )
+  	)
 
 
 

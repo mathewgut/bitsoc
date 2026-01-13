@@ -1,5 +1,10 @@
+import { useState } from "react"
+import { ImageLightBox, type GalleryImage } from "./GalleryItems"
+
 // cards used in IndexEvents component to show events
-export default function EventCard({title, description, image, link, type}:{title:string, description:string, image:string, link?:string, type?:"svg"|"img"|"detail"}) {
+export default function EventCard({title, description, image, date, location, link, type}:{title:string, description:string, image:string, date?:string, location?:string, link?:string, type?:"svg"|"img"|"detail"}) {
+    const [selectedImage, setSelectedImage] =  useState<string | GalleryImage | null>("");
+    
     if( type === "svg") {
         return (
             <article className="hover:scale-105 ease-in-out duration-200 hover:cursor-pointer">
@@ -40,12 +45,19 @@ export default function EventCard({title, description, image, link, type}:{title
     }
     
     return (
-        <article className="hover:scale-105 ease-in-out duration-200 hover:cursor-pointer">
+        <article className="hover:scale-105 ease-in-out duration-200">
             <div className="flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-45 sm:w-55 lg:w-65 scroll-smooth scroll">
-                <img className="h-3/4 object-cover" src={image} alt={title} />
+                <img onClick={() => setSelectedImage(image)} className="h-3/4 object-cover" src={image} alt={title} />
                 <div className="p-4 bg-white">
+                    {date && 
+                        <p className="text-xs mb-1">{date}</p> 
+                    }
                     <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                    <p className="text-gray-700 text-base">{description}</p>
+                    <p className="text-gray-700 text-sm mb-2">{description}</p>
+                    <span className="flex gap-1 items-center text-xs">
+                        <img className="w-fit h-4" src="/map-pin.svg" />
+                        <p>{location}</p>
+                     </span>
                 </div>
             </div>
         </article>
