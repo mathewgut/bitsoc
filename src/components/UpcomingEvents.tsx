@@ -27,77 +27,35 @@ function FormatTime (time:string) {
 }
 
 
-export default function UpcomingEvents() {
-    const [data, setData] = useState<EventData[] | null>(null);
-    const [dataLoading, setDataLoading] = useState<boolean>(true);
-    const [dataError, setDataError] = useState<boolean>(false);
+export default function UpcomingEvents({data}:{data:BluditScheduledResponse}) {
+    let events: EventData[];
 
 
-     useEffect(()=>{
-            async function fetchUpcoming() {
-                try {
-                    const response = await fetch("/connect/get-scheduled-events/");
-                    if (!response.ok) {
-                        setDataLoading(false);
-                        setDataError(true);
-                    }
-    
-                    const result: BluditScheduledResponse["data"] = await response.json();
-                    
-                    if(result.length < 1){
-                        setDataLoading(false);
-                        return;
-                    }
-                    const events: EventData[] = result.map((item) => ({
-                        title: item.title,
-                        description: item.description,
-                        image: item.coverImage ? String(item.coverImage) : "/frown.svg",
-                        date: item.date + ` ${FormatTime(item.dateRaw.split(" ")[1])}`,
-                        location: String(marked((item.content).trim())).slice(3, -4),
-                    }));
-                    
-                    setData(events);
-                    setDataLoading(false);
-
-                } catch (error: any) {
-                    console.log(error)
-                    setDataLoading(false);
-                    setDataError(true);
-                }
-            }
-            
-            fetchUpcoming();
-            },[])
-
+    if(data.data.length >=1){
+        events = data.data.map((item) => ({
+            title: item.title,
+            description: item.description,
+            image: item.coverImage ? String(item.coverImage) : "/frown.svg",
+            date: item.date + ` ${FormatTime(item.dateRaw.split(" ")[1])}`,
+            location: String(marked((item.content).trim())).slice(3, -4),
+        }));
+    }
+    else {
+        events = [{title:"", description:"",image:""}]
+    }
 
     return (
         <section className="flex justify-center w-full py-5 bg-linear-0 px-20">
-            { !dataLoading && !data && !dataError &&
+            { data.data.length < 1 &&
                 <div className="flex flex-col justify-center items-center gap-3 border-gray-300 border-2 rounded-lg p-5 shadow-md my-4 h-50 bg-white">
                     <h3 className="text-center text-lg font-semibold">There are no upcoming events</h3>
                     <img src="/frown.svg" />
                 </div>
             }
             
-            { dataLoading &&
-                <section className="hidden sm:flex justify-center md:px-20 gap-4">
-                { Array.from({ length: 3 }).map((_, i) => 
-                    <article key={i} className="bg-neutral-500 animate-pulse w-50 h-75 rounded-lg" />
-                )}
-                </section>
-            }
-
-            { dataLoading &&
-                <section className="flex sm:hidden justify-center md:px-20 gap-4">
-                { Array.from({ length: 2 }).map((_, i) => 
-                    <article key={i} className="bg-neutral-500 animate-pulse w-40 h-60 rounded-lg" />
-                )}
-                </section>
-            }
-            
             {
-                data && !dataLoading &&
-                <CardCarousel data={data} cardType="event" />
+                data.data.length >= 1 &&
+                <CardCarousel data={events} cardType="event" />
             }
            
         </section>

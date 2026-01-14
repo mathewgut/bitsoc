@@ -2,7 +2,45 @@
 import Footer from "@/components/Footer.astro";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { BluditScheduledResponse } from "@/types";
 import Image from "astro/components/Image.astro";
+
+const apiKey = import.meta.env.API_KEY;
+const endpoint = "https://bitsoc.ca/manage/api/pages?token=" + String(apiKey) + "&published=false&scheduled=true";
+
+let data:BluditScheduledResponse;
+let filtered: BluditScheduledResponse = { status: "", message: "", numberOfITems: 0, data: [] };
+let error = false;
+
+	if (!apiKey) {
+		console.error("API KEY is not set in .env file");
+	}
+
+	try {
+		const res = await fetch(endpoint);
+
+		if (!res.ok) {
+			error = error;
+		}
+
+		data = await res.json();
+		console.log(data);
+		if(data.data && data.data.length >= 1){
+			filtered = {
+				...data,
+				data: data.data.filter((page) => page.category == "Events" ? true : false)
+			};
+		}
+		else {
+			filtered = data || { status: false, message: "", numberOfITems: 0, data: [] };
+		}
+        
+        
+    }
+
+    catch (error) {
+       error = error;
+    }
 ---
 
 <BaseLayout title="Events"> 
@@ -21,7 +59,7 @@ import Image from "astro/components/Image.astro";
 	</article>
     <main class="flex flex-col items-center w-full gap-10 justify-center px-12 lg:px-20 pb-20 pt-10 scroll-smooth">
         <h2 class="text-3xl sm:text-4xl font-semibold text-left">Upcoming events</h2>
-		<UpcomingEvents client:load />
+		<UpcomingEvents data={filtered} client:load />
 
 		<section class="my-5 flex flex-col gap-4 w-full" >
 			<h2 class="text-xl sm:text-2xl font-semibold text-left">
