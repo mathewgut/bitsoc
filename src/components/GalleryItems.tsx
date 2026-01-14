@@ -21,50 +21,19 @@ const fixGalleryUrl = (href:string) => {
     return "https://bitsoc.ca/" + hrefArray.slice(4).join("/")
 }
 
-export default function GalleryItems() {
-    const [data, setData] = useState<GalleryResponse|null>(null);
-    const [isLoading, setisLoading] = useState<boolean>(true);
-    const [isError, setIsError] = useState<boolean>(false);
-
+export default function GalleryItems({data}:{data:GalleryResponse}) {
     // lightbox open when Image, lightbox closed when null
     const [selectedImage, setSelectedImage] = useState<GalleryImage|null|string>(null)
     const [sliceCount, setSliceCount] = useState<number>(1);
 
 
-    useEffect(()=>{
-        async function fetchGallery() {
-            try {
-                const response = await fetch("/connect/get-gallery/");
-                if (!response.ok) {
-                    setisLoading(false);
-                    setIsError(true);
-                }
-
-                const result: GalleryResponse = await response.json();
-                setisLoading(false);
-                setData(result);
-            } catch (error: any) {
-                setisLoading(false);
-                setIsError(true);
-            }
-        }
-        
-        fetchGallery();
-    },[])
-
+   
     useEffect(()=>{
         selectedImage == null ? document.body.classList.remove("overflow-y-hidden") : document.body.classList.add("overflow-y-hidden");
     },[selectedImage])
 
-    if(isError){
-        return (
-            <div className="flex flex-col gap-2 w-fit h-fit justify-center items-center py-4 px-8 shadow-md rounded-md border-2 border-bitsoc-blue/50">
-                <h2 className="sm:text-lg font-semibold">Oops! Something went wrong loading the gallery.</h2>
-                <p className="text-sm">Try again later. If the issue persists feel free to reach out to us.</p>
-            </div>
-        )
-    }
-    else if(isLoading) {
+    /*
+    if(isLoading) {
         return(
             <div className="flex flex-wrap gap-4 w-full h-fit justify-center items-center">
                     { Array.from({ length: 26 }).map((_, i) => (
@@ -74,8 +43,9 @@ export default function GalleryItems() {
             </div>
         )
     }
+    */
 
-    else if(data?.data && data.data.length == 0) {
+    if(data?.data && data.data.length == 0) {
          return(
             <div className="flex flex-col gap-2 w-fit h-fit justify-center items-center py-6 px-6 sm:px-12 shadow-md rounded-md border-2 border-bitsoc-blue/50 ">
                 <h2 className="sm:text-lg font-semibold">No images found!</h2>

@@ -3,13 +3,53 @@ import ExecContact from "@/components/ExecContact";
 import Footer from "@/components/Footer.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
+const apiKey = import.meta.env.API_KEY;
+const endpoint = "https://bitsoc.ca/manage/api/categories/executives?token=" + String(apiKey);
+
+let data;
+let error = false;
+
+if (!apiKey) {
+    console.error("API KEY is not set in .env file");
+    error = true
+}
+
+try {
+    const res = await fetch(endpoint);
+
+    if (!res.ok) {
+        error = true
+        throw new Error(`Failed to fetch from backend: ${res.statusText}`);
+    }
+
+    data = await res.json();
+
+    // data.data.pages is an array of pages, each representing a role with occupant information
+    // we reverse due to the order that the pages were created in, and so president is on top
+    data.data.pages = data.data.pages.reverse();
+
+} 
+catch (error) {
+    error = true
+}
+
 ---
 
 <BaseLayout title="Contact us">
     <main class="flex flex-col items-center w-full px-12 lg:px-20 pt-10 scroll-smooth h-screen">
         <h1 class="text-3xl font-semibold pb-4">Contact Us</h1>
         <p class="pb-14">Select an executive position below to the find contact information and current occupant</p>
-        <ExecContact client:load />
+        { error &&
+            <div class="flex flex-col gap-2 w-fit h-fit justify-center items-center py-4 px-8 shadow-md rounded-md border-2 border-bitsoc-blue/50">
+                <h2 class="sm:text-lg font-semibold">Oops! Something went wrong loading contact information.</h2>
+                <p class="text-sm">Try again later. If the issue persists feel free to reach out to us.</p>
+            </div>
+        }
+
+        { data &&
+            <ExecContact data={data} client:load />
+        }
+        
     </main>
     <Footer />
 </BaseLayout>

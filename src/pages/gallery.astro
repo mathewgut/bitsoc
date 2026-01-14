@@ -11,14 +11,6 @@ let error = false;
 if (!apiKey) {
     console.error("API KEY is not set in .env file");
     error = true
-    /*
-    return new Response(
-        JSON.stringify({ message: "Server config error." }),
-       
-    { status: 501 }
-    );
-    */
-    
 }
 
 try {
@@ -30,23 +22,10 @@ try {
     }
 
     data = await res.json();
-    
-    /*
-    return new Response(JSON.stringify(data), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-    });
-    */
 
 } 
 catch (error) {
     error = true
-     /*
-    return new Response(
-        JSON.stringify({ message:error }),
-        { status: 500 }
-    );
-    */
 }
 ---
 
@@ -58,6 +37,16 @@ catch (error) {
                 Welcome to the gallery! Here you will find a collection of images and media showcasing our events and activities.
             </p>
         </header>
-        <GalleryItems client:load />
+        { error &&
+
+            <div class="flex flex-col gap-2 w-fit h-fit justify-center items-center py-4 px-8 shadow-md rounded-md border-2 border-bitsoc-blue/50">
+                <h2 class="sm:text-lg font-semibold">Oops! Something went wrong loading the gallery.</h2>
+                <p class="text-sm">Try again later. If the issue persists feel free to reach out to us.</p>
+            </div>
+        }
+        { data &&
+            <GalleryItems data={data} client:only />
+        }
+        
    </main>
 </BaseLayout>

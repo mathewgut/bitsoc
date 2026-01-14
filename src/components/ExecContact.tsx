@@ -24,52 +24,8 @@ const parseContactContent = (contact:BluditPage["content"]) => {
 
 
 
-export default function ExecContact(){
-    const [data, setData] = useState<BluditResponse | null>(null);
-    const [isLoading, setisLoading] = useState<boolean>(true);
-    const [isError, setIsError] = useState<boolean>(false);
-
-    useEffect(()=>{
-        async function fetchGallery() {
-            try {
-                const response = await fetch("/connect/get-execs/");
-                if (!response.ok) {
-                    setisLoading(false);
-                    setIsError(true);
-                }
-
-                const result: BluditResponse = await response.json();
-                setisLoading(false);
-                setData(result);
-            } catch (error: any) {
-                console.log(error)
-                setisLoading(false);
-                setIsError(true);
-            }
-        }
-        
-        fetchGallery();
-        },[])
-    
-    if(isError){
-        return(
-            <div className="flex flex-col gap-2 w-fit h-fit justify-center items-center py-4 px-8 shadow-md rounded-md border-2 border-bitsoc-blue/50">
-                    <h2 className="sm:text-lg font-semibold">Oops! Something went wrong loading contact information.</h2>
-                    <p className="text-sm">Try again later. If the issue persists feel free to reach out to us.</p>
-            </div>
-        )
-    }
-    else if (isLoading){
-        return(
-            <section className="flex flex-col w-full h-300 max-w-350 gap-2 pt-12 px-2">
-                { Array.from({ length: 8 }).map((_, i) => 
-                    <article key={i} className="w-full h-12 rounded-sm animate-pulse bg-neutral-500" />
-                )}
-                
-            </section>
-        )
-    }
-    else if(data?.data.pages){
+export default function ExecContact({data}:{data:BluditResponse}){
+    if(data.data.pages.length >= 1){
         return(
             <Accordion
                 type="single"
@@ -79,7 +35,7 @@ export default function ExecContact(){
                 >
                 <h2 className="flex text-xl font-semibold">Executive info</h2>
             
-                { data.data.pages.reverse().map((item,index) => 
+                { data.data.pages.map((item,index) => 
                     <AccordionItem key={index} value={String(index)}>
                         <AccordionTrigger className="cursor-pointer">{item.title}</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-2 text-balance pl-4">
@@ -95,8 +51,15 @@ export default function ExecContact(){
                         </AccordionContent>
                     </AccordionItem>
                 )}
-                </Accordion>
-           
+            </Accordion>
+        )
+    }
+    else if (data.data.pages.length < 1){
+        return(
+            <div className="flex flex-col gap-2 w-fit h-fit justify-center items-center py-4 px-8 shadow-md rounded-md border-2 border-bitsoc-blue/50">
+                <h2 className="sm:text-lg font-semibold">No contact information found</h2>
+                <p className="text-sm max-w-100">This could be due to an error in how we setup our roles. Reach out to us if this issue persists.</p>
+            </div>
         )
     }
     
