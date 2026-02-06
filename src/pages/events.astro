@@ -6,7 +6,7 @@ import type { BluditScheduledResponse } from "@/types";
 import Image from "astro/components/Image.astro";
 
 const apiKey = import.meta.env.API_KEY;
-const endpoint = "https://bitsoc.ca/manage/api/pages?token=" + String(apiKey) + "&published=false&scheduled=true";
+const endpoint = "https://bitsoc.ca/manage/api/pages?token=" + String(apiKey) + "&scheduled=true";
 
 let data:BluditScheduledResponse;
 let filtered: BluditScheduledResponse = { status: "", message: "", numberOfITems: 0, data: [] };
@@ -61,7 +61,7 @@ let error = false;
         <h2 class="text-3xl sm:text-4xl font-semibold text-left">Upcoming events</h2>
 		<UpcomingEvents data={filtered} client:load />
 
-		<section class="my-5 flex flex-col gap-4 w-full" >
+		<section class="my-5 flex flex-col gap-4 w-full items-center" >
 			<h2 class="text-xl sm:text-2xl font-semibold text-left">
 				Have a question about events?
 			</h2>

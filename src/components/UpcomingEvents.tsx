@@ -29,6 +29,7 @@ function FormatTime (time:string) {
 
 export default function UpcomingEvents({data}:{data:BluditScheduledResponse}) {
     let events: EventData[];
+    console.log(data);
 
 
     if(data.data.length >=1){
@@ -45,7 +46,7 @@ export default function UpcomingEvents({data}:{data:BluditScheduledResponse}) {
     }
 
     return (
-        <section className="flex justify-center w-full py-5 bg-linear-0 px-20">
+        <section className="flex justify-center w-full py-5 bg-linear-0 sm:px-20">
             { data.data.length < 1 &&
                 <div className="flex flex-col justify-center items-center gap-3 border-gray-300 border-2 rounded-lg p-5 shadow-md my-4 h-50 bg-white">
                     <h3 className="text-center text-lg font-semibold">There are no upcoming events</h3>

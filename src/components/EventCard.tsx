@@ -46,7 +46,7 @@ export default function EventCard({title, description, image, date, location, li
     
     return (
         <article className="hover:scale-105 ease-in-out duration-200">
-            <div className="flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-45 sm:w-55 lg:w-65 scroll-smooth scroll">
+            <div className="flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-55 lg:w-65 scroll-smooth scroll">
                 <img onClick={() => setSelectedImage(image)} className="h-3/4 object-cover" src={image} alt={title} />
                 <div className="p-4 bg-white">
                     {date && 
@@ -57,7 +57,7 @@ export default function EventCard({title, description, image, date, location, li
                     <span className="flex gap-1 items-center text-xs">
                         <img className="w-fit h-4" src="/map-pin.svg" />
                         <p>{location}</p>
-                     </span>
+                    </span>
                 </div>
             </div>
         </article>
