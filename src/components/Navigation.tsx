@@ -46,7 +46,7 @@ function DesktopNav(){
         <nav className={scrolledStyles ? scrolledStyles : "ease-in-out duration-200 flex z-50 gap-2 h-17 backdrop-blur-xs text-lg fixed top-0 w-full justify-between items-center border-b border-black px-4 bg-white/30 bg-linear-to-l from-white via-white/70 to-transparent"}>
             <a className="flex h-full" href="/">
                 <button className="hover:cursor-pointer">
-                    <img className="h-full" src="/logo.ico" alt="bit society logo" />
+                    <img className="h-full" src="/favicon.svg" alt="bit society logo" />
                 </button>
             </a>
             
@@ -75,7 +75,7 @@ function MobileNav () {
             <nav className={"flex fixed top-0 z-50 justify-between  items-center w-full h-14 pl-5 pr-2 backdrop-blur-xs text-lg border-b border-black bg-white"}>
                 <a className="flex h-15" href="/">
                     <button>
-                        <img className="h-15" src="/logo.ico" alt="bit society logo" />
+                        <img className="h-10" src="/favicon.svg" alt="bit society logo" />
                     </button>
                 </a>
 
@@ -93,7 +93,7 @@ function Sidebar ({isOpen, setIsOpen}: {isOpen: boolean, setIsOpen:(input:boolea
         document.body.classList.add("overflow-y-hidden")
         return (
             <aside onClick={event => event.target == event.currentTarget ? setIsOpen(false) : null} className="fixed ease-in-out duration-200 top-0 right-0 w-svw h-svh backdrop-blur-xs shadow-lg z-50 animate-in fade-in">
-                <div className="fixed ease-in-out duration-200 top-0 right-0 w-64 h-full bg-white shadow-lg z-50 animate-in fade-in border-l-black border-l-1">
+                <div className="fixed ease-in-out duration-200 top-0 right-0 w-64 h-full bg-white shadow-lg z-50 animate-in fade-in border-l-black border-l">
                     <button className="absolute top-4 right-4" ></button>
                     <ul className="mt-16 flex flex-col px-4">
                         <li><a href="/"><button className={buttonClasses}>Home</button></a></li>

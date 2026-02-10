@@ -99,7 +99,7 @@ export default function CardCarousel({ cardType, data }: { cardType?: "info" | "
         >
             <CarouselContent className="w-full pb-6">
                 {data.map((item, index) => (
-                    <CarouselItem key={index} className=" sm:basis-1/2 xl:basis-1/3 p-5">
+                    <CarouselItem key={index} className=" md:basis-1/2 xl:basis-1/3 p-5">
                         <div className="p-1">
                             <EventCard
                                 title={item.title}
