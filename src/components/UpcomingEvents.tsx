@@ -2,15 +2,8 @@ import { useEffect, useState } from "react";
 import CardCarousel from "./CardCarousel";
 import type { BluditResponse, BluditScheduledResponse } from "@/types";
 import { marked } from "marked";
+import type { EventData } from "@/types";
 
-
-interface EventData {
-    title:string;
-    description:string
-    image:string;
-    date?:string;
-    location?:string;
-}
 
 function FormatTime (time:string) {
     time = time.slice(0,-3);
@@ -29,8 +22,6 @@ function FormatTime (time:string) {
 
 export default function UpcomingEvents({data}:{data:BluditScheduledResponse}) {
     let events: EventData[];
-    console.log(data);
-
 
     if(data.data.length >=1){
         events = data.data.map((item) => ({
@@ -39,11 +30,16 @@ export default function UpcomingEvents({data}:{data:BluditScheduledResponse}) {
             image: item.coverImage ? String(item.coverImage) : "/frown.svg",
             date: item.date + ` ${FormatTime(item.dateRaw.split(" ")[1])}`,
             location: String(marked((item.content).trim())).slice(3, -4),
+
+            // if a link exists in the description, extract it and make it clickable, otherwise set link to a falsy string
+            link: item.description.includes("https://") ? item.description.split("https://")[1].split(" ")[0] : "",
         }));
     }
     else {
         events = [{title:"", description:"",image:""}]
     }
+
+    console.log(events);
 
     return (
         <section className="flex justify-center w-full py-5 bg-linear-0 lg:px-20">

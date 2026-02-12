@@ -4,6 +4,7 @@ import { ImageLightBox, type GalleryImage } from "./GalleryItems"
 // cards used in IndexEvents component to show events
 export default function EventCard({title, description, image, date, location, link, type}:{title:string, description:string, image:string, date?:string, location?:string, link?:string, type?:"svg"|"img"|"detail"}) {
     const [selectedImage, setSelectedImage] =  useState<string | GalleryImage | null>("");
+
     
     if( type === "svg") {
         return (
@@ -44,6 +45,7 @@ export default function EventCard({title, description, image, date, location, li
         )
     }
     
+    // no type for events
     return (
         <article className="hover:scale-105 ease-in-out duration-200">
             <div className="flex flex-col border-2 border-gray-300 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-55 lg:w-65 scroll-smooth scroll">
@@ -53,7 +55,24 @@ export default function EventCard({title, description, image, date, location, li
                         <p className="text-xs mb-1">{date}</p> 
                     }
                     <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                    <p className="text-gray-700 text-sm mb-2">{description}</p>
+                    <p className="text-gray-700 text-sm mb-2">
+                        { 
+                            // if a link exists in the description, split the description and make the link clickable, then join the rest of the description after the link
+                            // otherwise just show the description
+                            link ?
+                            <>
+                                <span>{description.split("https://")[0] + " "}</span>
+                                <a href={"https://" + link} target ="_blank" rel="noopener noreferrer" className="text-bitsoc-orange hover:underline">
+                                    {link}
+                                </a>
+                                <span>{" " + description.split("https://")[1].split(" ").slice(1).join(" ")}</span>
+                            </>
+                            :
+                            <span>{description}</span>
+                          
+                            
+                        }
+                    </p>
                     <span className="flex gap-1 items-center text-xs">
                         <img className="w-fit h-4" src="/map-pin.svg" />
                         <p>{location}</p>

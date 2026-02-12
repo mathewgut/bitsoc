@@ -3,8 +3,9 @@ import EventCard from "./EventCard";
 import { ImageLightBox, type GalleryImage } from "./GalleryItems";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import type { EventData } from "@/types";
 
-export default function CardCarousel({ cardType, data }: { cardType?: "info" | "event" | "photos", data?: Array<{ title: string, date?: string, link?: string, description: string, location?:string, image: string }> }) {
+export default function CardCarousel({ cardType, data }: { cardType?: "info" | "event" | "photos", data?: EventData[] }) {
     // 1. Initialize state for the lightbox
     const [selectedImage, setSelectedImage] = useState<string | GalleryImage | null>(null);
 
@@ -79,7 +80,7 @@ export default function CardCarousel({ cardType, data }: { cardType?: "info" | "
                                     description={item.description}
                                     image={item.image}
                                     type="svg"
-                                    link={item.link ?? " "}
+                                    link={item.link ?? ""}
                                 />
                             </div>
                         </CarouselItem>
@@ -90,6 +91,8 @@ export default function CardCarousel({ cardType, data }: { cardType?: "info" | "
             </Carousel>
         )
     }
+
+    // if event
 
     return (
         <Carousel
@@ -107,6 +110,7 @@ export default function CardCarousel({ cardType, data }: { cardType?: "info" | "
                                 image={item.image}
                                 date ={item.date} 
                                 location={item.location}
+                                link={item.link}
                             />
                         </div>
                     </CarouselItem>

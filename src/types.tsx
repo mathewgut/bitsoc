@@ -38,3 +38,12 @@ export interface BluditPage {
   coverImage: string | boolean;
   coverImageFilename: string | boolean;
 }
+
+export interface EventData {
+    title:string;
+    description:string
+    image:string;
+    date?:string;
+    location?:string;
+    link?:string;
+}
