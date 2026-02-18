@@ -139,8 +139,8 @@ export function ImageLightBox({src, alt, setState}:{src:string,alt:string, setSt
 
             <img style={{transform: `scale(${zoom})`}} ref={currentImage} onLoad={() => {setIsLoaded(true); setDimensions()}} id="shown-image" className={`rounded-xl ease-in-out drop-shadow-md duration-250 max-w-4/5 h-fit max-h-4/5 z-50 ${isLoaded ? "opacity-100 flex" : "opacity-0"}`} src={src} alt={alt} ></img>
             <div className={`flex mt-4 px-2 py-1 rounded-2xl items-center justify-between w-65 ${hasZoomedClasses} border-neutral-300 shadow border-2 delay-400 ease-in-out duration-300  ${isLoaded ? "opacity-100 flex" : "opacity-0"} z-50`}>
-                <button onClick={() => {zoom > 1 ? setZoom(zoom-0.2) : null; console.log(zoom)}} className={`p-1 sm:p-2 ${buttonClasses} ${zoomOutClasses} `} aria-label="zoom out button"><img className="w-4 h-4 sm:w-5 sm:h-5" src="zoom-out.svg" alt="zoom out" /></button>
-                <button onClick={() => {zoom < 2 ? setZoom(zoom+0.2) : null; console.log(zoom)}} className={`p-1 sm:p-2 ${buttonClasses} ${zoomInClasses} `} aria-label="zoom in button"><img className="w-4 h-4 sm:w-5 sm:h-5" src="zoom-in.svg" alt="zoom" /></button>
+                <button onClick={() => {zoom > 1 ? setZoom(zoom-0.2) : null; console.log(zoom)}} className={`p-1 sm:p-2 ${buttonClasses} ${zoomOutClasses} `} aria-label="zoom out button"><img className="w-4 h-4 sm:w-5 sm:h-5" src="/zoom-out.svg" alt="zoom out" /></button>
+                <button onClick={() => {zoom < 2 ? setZoom(zoom+0.2) : null; console.log(zoom)}} className={`p-1 sm:p-2 ${buttonClasses} ${zoomInClasses} `} aria-label="zoom in button"><img className="w-4 h-4 sm:w-5 sm:h-5" src="/zoom-in.svg" alt="zoom" /></button>
             </div>
         </div>
     )

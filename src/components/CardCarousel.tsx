@@ -98,12 +98,12 @@ export default function CardCarousel({ cardType, data }: { cardType?: "info" | "
         <Carousel
             plugins={[Autoplay({ delay: 2750 })]}
             opts={{ align: "start", loop: true }}
-            className="w-full max-w-5xl"
+            className="w-full max-w-7/8 md:max-w-5xl mx-4"
         >
-            <CarouselContent className="w-full pb-6">
+            <CarouselContent className="w-full sm:mx-10 pb-6 ">
                 {data.map((item, index) => (
                     <CarouselItem key={index} className=" md:basis-1/2 xl:basis-1/3 p-5">
-                        <div className="p-1">
+                        <div className="p-1 sm:px-16 md:px-4">
                             <EventCard
                                 title={item.title}
                                 description={item.description}

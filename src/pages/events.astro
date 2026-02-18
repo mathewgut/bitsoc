@@ -6,9 +6,9 @@ import type { BluditScheduledResponse } from "@/types";
 import Image from "astro/components/Image.astro";
 
 const apiKey = import.meta.env.API_KEY;
-const endpoint = "https://bitsoc.ca/manage/api/pages?token=" + String(apiKey) + "&scheduled=true";
+const endpoint = "https://bitsoCc.ca/manage/api/pages?token=" + String(apiKey) + "&scheduled=true";
 
-let data:BluditScheduledResponse;
+let data: BluditScheduledResponse;
 let filtered: BluditScheduledResponse = { status: "", message: "", numberOfITems: 0, data: [] };
 let error = false;
 
@@ -35,7 +35,6 @@ let error = false;
 			filtered = data || { status: false, message: "", numberOfITems: 0, data: [] };
 		}
         
-        
     }
 
     catch (error) {
@@ -59,13 +58,13 @@ let error = false;
 	</article>
     <main class="flex flex-col items-center w-full gap-10 justify-center px-12 lg:px-20 pb-20 pt-10 scroll-smooth">
         <h2 class="text-3xl sm:text-4xl font-semibold text-left">Upcoming events</h2>
-		<UpcomingEvents data={filtered} client:load />
+		<UpcomingEvents client:load />
 
 		<section class="my-5 flex flex-col gap-4 w-full items-center" >
 			<h2 class="text-xl sm:text-2xl font-semibold text-left">
 				Have a question about events?
 			</h2>
-			<span class="">
+			<span class="text-center">
 				You can contact our events team for more information <a class="underline text-bitsoc-orange" href="/contact">here</a>.
 			</span>
 		</section>

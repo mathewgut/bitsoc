@@ -89,12 +89,12 @@ let error = false;
 	</section>
 	<!-- make sure you add client:load, client:visible etc, or else js wont load/be interactive -->
 	<section class="relative flex justify-center w-full py-5 bg-linear-0  px-15 sm:px-20">
-			<UpcomingEvents data={filtered} client:load />
+			<UpcomingEvents client:load />
 
 			<div class="absolute hidden sm:block bottom-0 right-0 bg-bitsoc-lblue h-50 w-50 sm:h-40 sm:w-40 rounded-full -z-10"/>
 			<div class="absolute sm:-top-20 sm:-left-10 bg-bitsoc-lblue h-70 w-70 rounded-full -z-10"/>
 		</section>
-	<section class="flex justify-center md:justify-baseline bg-white w-full px-4 lg:px-20 z-30 pt-4">
+	<section class="flex justify-center md:justify-baseline w-full px-4 lg:px-20 z-30 pt-4">
 		
 		<a href="/events">
 			<button class="w-fit py-2 px-8 my-2 hover:cursor-pointer text-bitsoc-orange border-2 border-bitsoc-orange rounded-lg hover:bg-bitsoc-orange hover:text-white transition-colors duration-300">
